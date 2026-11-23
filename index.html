@@ -95,6 +95,9 @@
   ul.see input { width: 18px; height: 18px; margin: 3px 0 0; flex: none; accent-color: var(--check); cursor: pointer; }
   ul.see input:checked + span b { color: var(--check); }
   ul.see b { font-weight: 600; }
+  ul.see .links { display: flex; gap: 14px; margin: -4px 0 4px 28px; font-size: 13px; }
+  ul.see .links a { color: var(--muted); text-decoration: none; }
+  ul.see .links a:hover { color: var(--accent); text-decoration: underline; }
   body.only-picked ul.see li:not(.picked) { display: none; }
   body.only-picked .card h3.empty, body.only-picked .card h3.empty + ul.see { display: none; }
 
@@ -165,11 +168,11 @@
           <li><b>La médina</b> : remparts blancs, volets bleus, classée à l'Unesco.</li>
           <li><b>La Skala de la Ville</b> : la promenade sur les remparts et ses canons, idéale au coucher du soleil.</li>
           <li><b>Le port de pêche</b> : barques bleues, criée et chantier naval. Poisson grillé sur les stands à la sortie du port.</li>
-          <li><b>Le Mellah et Bayt Dakira</b> : l'ancien quartier juif et sa maison de la mémoire.</li>
-          <li><b>Les ateliers de thuya</b> : marqueterie, la spécialité locale.</li>
-          <li><b>La plage</b> : longue balade vers le sud, kitesurf et chameaux.</li>
-          <li><b>Sidi Kaouki</b> : plage sauvage à 30 min.</li>
-          <li><b>Une coopérative d'huile d'argan</b>, sur la route de Marrakech.</li>
+          <li data-q="Bayt Dakira"><b>Le Mellah et Bayt Dakira</b> : l'ancien quartier juif et sa maison de la mémoire.</li>
+          <li data-q="Ensemble artisanal thuya"><b>Les ateliers de thuya</b> : marqueterie, la spécialité locale.</li>
+          <li data-q="Plage d'Essaouira"><b>La plage</b> : longue balade vers le sud, kitesurf et chameaux.</li>
+          <li data-q="Sidi Kaouki"><b>Sidi Kaouki</b> : plage sauvage à 30 min.</li>
+          <li data-q="Coopérative huile d'argan"><b>Une coopérative d'huile d'argan</b>, sur la route de Marrakech.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -189,7 +192,7 @@
           <li><b>La mosquée Hassan II</b> : construite en partie sur l'océan, l'une des rares visitables à l'intérieur (visite guidée).</li>
           <li><b>La Corniche d'Aïn Diab</b> : promenade en bord de mer.</li>
           <li><b>Le quartier des Habous</b> : la « nouvelle médina », librairies et pâtisseries.</li>
-          <li><b>Le centre Art déco</b> : immeubles des années 1930 autour du boulevard Mohammed V.</li>
+          <li data-q="Boulevard Mohammed V"><b>Le centre Art déco</b> : immeubles des années 1930 autour du boulevard Mohammed V.</li>
           <li><b>Le Marché central</b> : poissons et fruits de mer à déguster sur place.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
@@ -207,11 +210,11 @@
         <h3>À voir</h3>
         <ul class="see">
           <li><b>La Kasbah des Oudayas</b> : ruelles bleues et blanches, jardin andalou, vue sur l'embouchure.</li>
-          <li><b>La Tour Hassan et le Mausolée Mohammed V</b>.</li>
+          <li data-q="Tour Hassan"><b>La Tour Hassan et le Mausolée Mohammed V</b>.</li>
           <li><b>Le Chellah</b> : ruines romaines et mérinides au milieu des jardins.</li>
-          <li><b>La médina et la rue des Consuls</b> : tapis et artisanat.</li>
-          <li><b>Le Musée Mohammed VI</b> d'art moderne et contemporain.</li>
-          <li><b>Salé</b>, juste en face de l'autre côté du fleuve (tramway ou barque).</li>
+          <li data-q="Rue des Consuls"><b>La médina et la rue des Consuls</b> : tapis et artisanat.</li>
+          <li data-q="Musée Mohammed VI d'art moderne et contemporain"><b>Le Musée Mohammed VI</b> d'art moderne et contemporain.</li>
+          <li data-q="Salé"><b>Salé</b>, juste en face de l'autre côté du fleuve (tramway ou barque).</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -230,8 +233,8 @@
           <li><b>Bab Mansour</b> : l'une des plus belles portes du Maroc.</li>
           <li><b>La place El Hedim</b> et la médina.</li>
           <li><b>Le Mausolée de Moulay Ismaïl</b> et les greniers <b>Heri es-Souani</b>.</li>
-          <li><b>Les ruines romaines de Volubilis</b> (30 min), si le temps le permet.</li>
-          <li><b>Moulay Idriss</b> : ville sainte perchée, juste à côté de Volubilis.</li>
+          <li data-q="Volubilis"><b>Les ruines romaines de Volubilis</b> (30 min), si le temps le permet.</li>
+          <li data-q="Moulay Idriss Zerhoun"><b>Moulay Idriss</b> : ville sainte perchée, juste à côté de Volubilis.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -251,13 +254,13 @@
           <li><b>Bab Boujloud</b> : la « porte bleue », entrée de la médina.</li>
           <li><b>La médina de Fès el-Bali</b> : immense, un guide aide beaucoup.</li>
           <li><b>Les tanneries Chouara</b>, vues depuis les terrasses des boutiques.</li>
-          <li><b>Les médersas Bou Inania et Al-Attarine</b>.</li>
+          <li data-q="Médersa Bou Inania"><b>Les médersas Bou Inania et Al-Attarine</b>.</li>
           <li><b>La mosquée Al Quaraouiyine</b> (vue de l'extérieur).</li>
           <li><b>La place Seffarine</b> : les dinandiers qui martèlent le cuivre.</li>
           <li><b>Le musée Nejjarine</b> des arts et métiers du bois.</li>
-          <li><b>Les portes dorées du Palais royal</b> (Dar el-Makhzen) et le Mellah.</li>
+          <li data-q="Dar el-Makhzen"><b>Les portes dorées du Palais royal</b> (Dar el-Makhzen) et le Mellah.</li>
           <li><b>Le jardin Jnan Sbil</b>, pour une pause au calme.</li>
-          <li><b>Le Borj Nord ou les tombeaux mérinides</b> : panorama sur la médina au coucher du soleil.</li>
+          <li data-q="Tombeaux mérinides"><b>Le Borj Nord ou les tombeaux mérinides</b> : panorama sur la médina au coucher du soleil.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -273,7 +276,7 @@
         <div class="rating" data-score="3">Petite ville, surtout pour l'ambiance</div>
         <h3>À voir</h3>
         <ul class="see">
-          <li><b>La médina bleue</b> : se perdre dans les ruelles.</li>
+          <li data-q="Médina de Chefchaouen"><b>La médina bleue</b> : se perdre dans les ruelles.</li>
           <li><b>La place Outa el Hammam</b> et la Kasbah.</li>
           <li><b>Ras el Maa</b> : la source et les lavoirs à l'entrée de la ville.</li>
           <li><b>La mosquée espagnole</b> : 30 min de marche pour la vue (à sauter si on manque de temps).</li>
@@ -295,7 +298,7 @@
           <li><b>La médina</b> : blanche, classée à l'Unesco, très authentique.</li>
           <li><b>La place Hassan II</b> et les portes du Palais royal.</li>
           <li><b>L'Ensanche</b> : le quartier espagnol, façades blanches à balcons.</li>
-          <li><b>L'École des arts et métiers</b> (Dar Sanaa) : zellige, bois sculpté, broderie.</li>
+          <li data-q="Dar Sanaa"><b>L'École des arts et métiers</b> (Dar Sanaa) : zellige, bois sculpté, broderie.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -311,7 +314,7 @@
         <div class="rating" data-score="4">Beaucoup à voir, mais peu de temps ici</div>
         <h3>À voir, si le temps le permet</h3>
         <ul class="see">
-          <li><b>La Kasbah</b> et son musée, vue sur le détroit.</li>
+          <li data-q="Kasbah"><b>La Kasbah</b> et son musée, vue sur le détroit.</li>
           <li><b>Le Grand Socco et le Petit Socco</b>.</li>
           <li><b>Le Café Hafa</b> : thé à la menthe sur les terrasses face à la mer.</li>
           <li><b>Le Cap Spartel et les grottes d'Hercule</b>, là où l'Atlantique rencontre la Méditerranée.</li>
@@ -369,6 +372,7 @@
   /* ---------- Checklist ---------- */
   document.querySelectorAll('ul.see').forEach(function (ul) {
     var section = ul.closest('section').id;
+    var city = ul.closest('section').querySelector('h2').textContent.split(',')[0].trim();
     ul.querySelectorAll('li').forEach(function (li) {
       var id = section + ':' + li.textContent.trim().slice(0, 60);
       var label = document.createElement('label');
@@ -379,6 +383,14 @@
       span.innerHTML = li.innerHTML;
       label.appendChild(box); label.appendChild(span);
       li.innerHTML = ''; li.appendChild(label);
+      // liens Plan (Google Maps) et Photos (recherche d'images)
+      var place = (li.dataset.q || span.querySelector('b').textContent) + ', ' + city;
+      var links = document.createElement('span');
+      links.className = 'links';
+      links.innerHTML =
+        '<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(place + ', Maroc') + '">📍 Plan</a>' +
+        '<a target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(place) + '">📷 Photos</a>';
+      li.appendChild(links);
       li.classList.toggle('picked', box.checked);
       box.addEventListener('change', function () {
         if (box.checked) picked[id] = 1; else delete picked[id];
