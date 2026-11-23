@@ -50,6 +50,7 @@
   <div class="toolbar">
     <span class="total" id="total">0 visite choisie</span>
     <label><input type="checkbox" id="only-picked"> Afficher seulement ma sélection</label>
+    <button class="link" id="sync-status" type="button" hidden></button>
     <button class="link" id="reset" type="button">Tout décocher</button>
   </div>
 
@@ -299,10 +300,12 @@
         '<a target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(place) + '">📷 Photos</a>';
       li.appendChild(links);
       li.classList.toggle('picked', box.checked);
+      box.dataset.id = id;
       box.addEventListener('change', function () {
         if (box.checked) picked[id] = 1; else delete picked[id];
         li.classList.toggle('picked', box.checked);
         save(); refresh();
+        if (window.tripSync) window.tripSync.set(id, box.checked);
       });
     });
     // compteur dans le titre « À voir » juste au-dessus
@@ -333,7 +336,23 @@
     picked = {}; save();
     document.querySelectorAll('ul.see input').forEach(function (b) { b.checked = false; b.closest('li').classList.remove('picked'); });
     refresh();
+    if (window.tripSync) window.tripSync.clear();
   });
+
+  // Pour la synchro à deux (sync.js) : lire et remplacer la sélection
+  window.tripChecklist = {
+    picked: function () { return Object.keys(picked); },
+    apply: function (ids) {
+      picked = {};
+      ids.forEach(function (i) { picked[i] = 1; });
+      save();
+      document.querySelectorAll('ul.see input').forEach(function (b) {
+        b.checked = !!picked[b.dataset.id];
+        b.closest('li').classList.toggle('picked', b.checked);
+      });
+      refresh();
+    }
+  };
 
   /* ---------- Carte d'ensemble ---------- */
   if (window.L) {
@@ -434,5 +453,6 @@
 })();
 </script>
 <script src="trip.js"></script>
+<script src="sync.js"></script>
 </body>
 </html>
