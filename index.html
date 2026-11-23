@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
   :root {
     --bg: #faf6f0;
@@ -48,6 +50,14 @@
   .route a { color: var(--text); text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; }
   .route a:hover { border-color: var(--accent); }
   .route li + li::before { content: "→"; color: var(--muted); margin-right: 4px; }
+
+  /* Carte */
+  #map { height: 340px; border-radius: 14px; border: 1px solid var(--line); margin: 0 0 8px; background: var(--surface); }
+  .map-note { color: var(--muted); font-size: 13px; margin: 0 0 16px; }
+  .map-pin { width: 24px; height: 24px; border-radius: 50%; background: #b5482a; color: #fff; font: 600 12px/24px Inter, system-ui, sans-serif; text-align: center; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+  .map-pin.short { background: #7a6a5e; }
+
+  .warn { background: var(--accent-soft); border-radius: 8px; padding: 8px 12px; font-size: 14px; margin: 12px 0 0; }
 
   /* Barre de sélection */
   .toolbar { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); padding: 10px 0; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: 14px; }
@@ -123,12 +133,17 @@
       <li><a href="#essaouira">Essaouira</a></li>
       <li><a href="#casablanca">Casablanca</a></li>
       <li><a href="#rabat">Rabat</a></li>
-      <li><a href="#meknes-fes">Meknès &amp; Fès</a></li>
+      <li><a href="#meknes">Meknès</a></li>
+      <li><a href="#fes">Fès</a></li>
       <li><a href="#chefchaouen">Chefchaouen</a></li>
+      <li><a href="#tetouan">Tétouan</a></li>
       <li><a href="#tanger">Tanger</a></li>
       <li><a href="#sete">Sète</a></li>
     </ul>
   </header>
+
+  <div id="map" role="img" aria-label="Carte de l'itinéraire"></div>
+  <p class="map-note">Pastilles grises : simples étapes dans la journée. Pointillés : le bateau vers Sète. Cliquer sur une ville pour y aller.</p>
 
   <div class="toolbar">
     <span class="total" id="total">0 visite choisie</span>
@@ -165,9 +180,10 @@
     <section class="stop" id="casablanca" data-wiki="Casablanca" style="--c: var(--sea)">
       <span class="dot"></span>
       <div class="card">
-        <div class="dates">Dim. 3 janv. · 1 nuit</div>
+        <div class="dates">Dim. 3 janv. (soir) → lun. 4 janv. (matin) · 1 nuit</div>
         <h2>Casablanca</h2>
         <div class="rating" data-score="2">Une soirée suffit, la mosquée avant tout</div>
+        <p class="meta">La mosquée Hassan II se visite le lundi matin avant de partir pour Rabat (horaires des visites guidées à vérifier).</p>
         <h3>À voir</h3>
         <ul class="see">
           <li><b>La mosquée Hassan II</b> : construite en partie sur l'océan, l'une des rares visitables à l'intérieur (visite guidée).</li>
@@ -180,7 +196,7 @@
         <div class="gallery"></div>
       </div>
     </section>
-    <div class="travel">🚗 <span><strong>Lun. 4 janv.</strong> · Casablanca → Rabat · environ 1 h de route</span></div>
+    <div class="travel">🚗 <span><strong>Lun. 4 janv., en fin de matinée</strong> · Casablanca → Rabat · environ 1 h de route</span></div>
 
     <section class="stop" id="rabat" data-wiki="Rabat">
       <span class="dot"></span>
@@ -201,70 +217,106 @@
         <div class="gallery"></div>
       </div>
     </section>
-    <div class="travel">🚗 <span><strong>Mer. 6 janv.</strong> · Rabat → Meknès · environ 2 h, puis Meknès → Fès · environ 1 h</span></div>
+    <div class="travel">🚗 <span><strong>Mer. 6 janv., le matin</strong> · Rabat → Meknès · environ 2 h de route</span></div>
 
-    <section class="stop" id="meknes-fes" data-wiki="Meknes|Fez,_Morocco">
+    <section class="stop" id="meknes" data-wiki="Meknes">
       <span class="dot"></span>
       <div class="card">
-        <div class="dates">Mer. 6 janv. · 1 nuit (à Fès)</div>
-        <h2>Meknès &amp; Fès</h2>
-        <h3>Meknès (le matin)</h3>
+        <div class="dates">Mer. 6 janv. · arrêt dans la journée</div>
+        <h2>Meknès</h2>
         <div class="rating" data-score="3">Intéressant, une demi-journée suffit</div>
+        <h3>À voir</h3>
         <ul class="see">
           <li><b>Bab Mansour</b> : l'une des plus belles portes du Maroc.</li>
           <li><b>La place El Hedim</b> et la médina.</li>
           <li><b>Le Mausolée de Moulay Ismaïl</b> et les greniers <b>Heri es-Souani</b>.</li>
           <li><b>Les ruines romaines de Volubilis</b> (30 min), si le temps le permet.</li>
+          <li><b>Moulay Idriss</b> : ville sainte perchée, juste à côté de Volubilis.</li>
         </ul>
-        <h3>Fès (l'après-midi et le soir)</h3>
+        <button class="photo-btn" type="button">📷 Voir les photos</button>
+        <div class="gallery"></div>
+      </div>
+    </section>
+    <div class="travel">🚗 <span><strong>Mer. 6 janv., en fin de journée</strong> · Meknès → Fès · environ 1 h de route</span></div>
+
+    <section class="stop" id="fes" data-wiki="Fez,_Morocco">
+      <span class="dot"></span>
+      <div class="card">
+        <div class="dates">Mer. 6 janv. (soir) → ven. 8 janv. (tôt le matin) · 2 nuits</div>
+        <h2>Fès</h2>
         <div class="rating" data-score="5">Incontournable, énormément à voir</div>
+        <span class="badge">Journée entière le jeudi 7</span>
+        <h3>À voir</h3>
         <ul class="see">
           <li><b>Bab Boujloud</b> : la « porte bleue », entrée de la médina.</li>
           <li><b>La médina de Fès el-Bali</b> : immense, un guide aide beaucoup.</li>
           <li><b>Les tanneries Chouara</b>, vues depuis les terrasses des boutiques.</li>
           <li><b>Les médersas Bou Inania et Al-Attarine</b>.</li>
           <li><b>La mosquée Al Quaraouiyine</b> (vue de l'extérieur).</li>
-          <li><b>Le Borj Nord</b> : panorama sur toute la médina.</li>
+          <li><b>La place Seffarine</b> : les dinandiers qui martèlent le cuivre.</li>
+          <li><b>Le musée Nejjarine</b> des arts et métiers du bois.</li>
+          <li><b>Les portes dorées du Palais royal</b> (Dar el-Makhzen) et le Mellah.</li>
+          <li><b>Le jardin Jnan Sbil</b>, pour une pause au calme.</li>
+          <li><b>Le Borj Nord ou les tombeaux mérinides</b> : panorama sur la médina au coucher du soleil.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
       </div>
     </section>
-    <div class="travel">🚗 <span><strong>Jeu. 7 janv.</strong> · Fès → Chefchaouen · environ 3 h 30 de route</span></div>
+    <div class="travel">🚗 <span><strong>Ven. 8 janv., départ vers 7 h 30</strong> · Fès → Chefchaouen · environ 3 h 30 de route</span></div>
 
     <section class="stop" id="chefchaouen" data-wiki="Chefchaouen" style="--c: var(--blue)">
       <span class="dot"></span>
       <div class="card">
-        <div class="dates">Jeu. 7 janv. · 1 nuit</div>
+        <div class="dates">Ven. 8 janv. · fin de matinée et déjeuner</div>
         <h2>Chefchaouen, la ville bleue</h2>
         <div class="rating" data-score="3">Petite ville, surtout pour l'ambiance</div>
         <h3>À voir</h3>
         <ul class="see">
           <li><b>La médina bleue</b> : se perdre dans les ruelles.</li>
           <li><b>La place Outa el Hammam</b> et la Kasbah.</li>
-          <li><b>La mosquée espagnole</b> : 30 min de marche, vue sur la ville au coucher du soleil.</li>
           <li><b>Ras el Maa</b> : la source et les lavoirs à l'entrée de la ville.</li>
+          <li><b>La mosquée espagnole</b> : 30 min de marche pour la vue (à sauter si on manque de temps).</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
       </div>
     </section>
-    <div class="travel">🚗 <span><strong>Ven. 8 janv.</strong> · Chefchaouen → Tanger · environ 2 h 30 de route</span></div>
+    <div class="travel">🚗 <span><strong>Ven. 8 janv., début d'après-midi</strong> · Chefchaouen → Tétouan · environ 1 h 15 de route</span></div>
+
+    <section class="stop" id="tetouan" data-wiki="Tétouan">
+      <span class="dot"></span>
+      <div class="card">
+        <div class="dates">Ven. 8 janv. · halte dans l'après-midi</div>
+        <h2>Tétouan</h2>
+        <div class="rating" data-score="3">Belle médina, peu touristique</div>
+        <h3>À voir</h3>
+        <ul class="see">
+          <li><b>La médina</b> : blanche, classée à l'Unesco, très authentique.</li>
+          <li><b>La place Hassan II</b> et les portes du Palais royal.</li>
+          <li><b>L'Ensanche</b> : le quartier espagnol, façades blanches à balcons.</li>
+          <li><b>L'École des arts et métiers</b> (Dar Sanaa) : zellige, bois sculpté, broderie.</li>
+        </ul>
+        <button class="photo-btn" type="button">📷 Voir les photos</button>
+        <div class="gallery"></div>
+      </div>
+    </section>
+    <div class="travel">🚗 <span><strong>Ven. 8 janv., fin d'après-midi</strong> · Tétouan → Tanger · environ 1 h de route</span></div>
 
     <section class="stop" id="tanger" data-wiki="Tangier">
       <span class="dot"></span>
       <div class="card">
-        <div class="dates">Ven. 8 janv. · départ du bateau à 22 h</div>
+        <div class="dates">Ven. 8 janv. · soir, départ du bateau à 22 h</div>
         <h2>Tanger</h2>
-        <div class="rating" data-score="4">Beaucoup à voir, juste une journée ici</div>
-        <h3>À voir</h3>
+        <div class="rating" data-score="4">Beaucoup à voir, mais peu de temps ici</div>
+        <h3>À voir, si le temps le permet</h3>
         <ul class="see">
           <li><b>La Kasbah</b> et son musée, vue sur le détroit.</li>
           <li><b>Le Grand Socco et le Petit Socco</b>.</li>
           <li><b>Le Café Hafa</b> : thé à la menthe sur les terrasses face à la mer.</li>
           <li><b>Le Cap Spartel et les grottes d'Hercule</b>, là où l'Atlantique rencontre la Méditerranée.</li>
         </ul>
-        <p class="meta" style="margin-top:12px">⚠️ Vérifier sur le billet le port de départ (en général <b>Tanger Med</b>, à environ 45 min de la ville) et l'heure limite d'embarquement.</p>
+        <p class="warn">⚠️ <b>Journée du 8 très chargée</b> : environ 6 h de route en tout. Vérifier sur le billet le port de départ (en général <b>Tanger Med</b>, à environ 45 min de Tanger et à 1 h de Tétouan) et l'heure limite d'embarquement, souvent plusieurs heures avant le départ. Si c'est Tanger Med, on peut aller directement de Tétouan au port.</p>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
       </div>
@@ -285,6 +337,7 @@
   <footer>
     Durées de trajet approximatives, à vérifier avant de partir. La note de chaque ville indique s'il y a beaucoup ou peu de choses à voir.
     Les cases cochées sont mémorisées sur cet appareil uniquement.
+    Carte : © OpenStreetMap.
     Photos : <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (licences libres, auteurs sur la page de chaque photo).
   </footer>
 
@@ -362,6 +415,39 @@
     document.querySelectorAll('ul.see input').forEach(function (b) { b.checked = false; b.closest('li').classList.remove('picked'); });
     refresh();
   });
+
+  /* ---------- Carte d'ensemble ---------- */
+  if (window.L) {
+    var stops = [
+      { id: 'essaouira',   name: 'Essaouira',   ll: [31.5085, -9.7595] },
+      { id: 'casablanca',  name: 'Casablanca',  ll: [33.5731, -7.5898] },
+      { id: 'rabat',       name: 'Rabat',       ll: [34.0209, -6.8416] },
+      { id: 'meknes',      name: 'Meknès',      ll: [33.8935, -5.5473], short: true },
+      { id: 'fes',         name: 'Fès',         ll: [34.0181, -5.0078] },
+      { id: 'chefchaouen', name: 'Chefchaouen', ll: [35.1688, -5.2636], short: true },
+      { id: 'tetouan',     name: 'Tétouan',     ll: [35.5785, -5.3684], short: true },
+      { id: 'tanger',      name: 'Tanger',      ll: [35.7595, -5.8340] }
+    ];
+    var sete = [43.4028, 3.6970];
+    var map = L.map('map', { scrollWheelZoom: false });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    L.polyline(stops.map(function (s) { return s.ll; }), { color: '#b5482a', weight: 3 }).addTo(map);
+    L.polyline([stops[stops.length - 1].ll, [36.2, -4.5], [37.5, 0.5], sete], { color: '#1f7a7a', weight: 3, dashArray: '6 8' })
+      .addTo(map).bindTooltip('Bateau vers Sète (2 nuits)');
+    stops.forEach(function (s, i) {
+      L.marker(s.ll, {
+        icon: L.divIcon({ className: '', html: '<div class="map-pin' + (s.short ? ' short' : '') + '">' + (i + 1) + '</div>', iconSize: [24, 24], iconAnchor: [12, 12] })
+      }).addTo(map)
+        .bindTooltip(s.name)
+        .on('click', function () { document.getElementById(s.id).scrollIntoView({ behavior: 'smooth' }); });
+    });
+    map.fitBounds(stops.map(function (s) { return s.ll; }), { padding: [24, 24] });
+  } else {
+    document.getElementById('map').style.display = 'none';
+  }
 
   /* ---------- Photos depuis Wikipédia (chargées au clic) ---------- */
   function loadPhotos(title) {
