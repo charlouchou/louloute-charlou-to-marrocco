@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Où dormir · Louloute &amp; Charlou</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="page">
+<div class="wrap">
+
+  <nav class="topnav">
+    <a href="index.html">Itinéraire</a>
+    <a href="dormir.html" aria-current="page">Où dormir</a>
+    <a href="infos.html">Infos pratiques</a>
+  </nav>
+
+  <header>
+    <div class="kicker">Louloute &amp; Charlou to Marrocco</div>
+    <h1>Où dormir</h1>
+    <p class="lead">5 idées par ville, centrales, entre 30 et 100 € la nuit.</p>
+    <p class="warn">⚠️ Les prix viennent de guides en ligne et sont indicatifs. Autour du Nouvel An, ils montent et les riads se remplissent vite : <b>à réserver tôt, surtout à Essaouira</b>. Le lien <b>Booking</b> ouvre la recherche aux dates du voyage, pour 2 personnes, avec le vrai prix.</p>
+    <ul class="route" id="cities"></ul>
+  </header>
+
+  <main id="list"></main>
+
+  <footer>
+    Sélection faite à partir de guides de voyage en ligne (22places, Kendyl Travels, Morocco Escape, Destinationless Travel, Malika in Morocco, Go Yaalah, City Quest Morocco, Brogan Abroad…). Rien n'est réservé.
+  </footer>
+</div>
+
+<script>
+(function () {
+  var STAYS = [
+    {
+      id: 'essaouira', city: 'Essaouira', when: 'Mer. 30 déc. → dim. 3 janv. · 4 nuits', checkin: '2026-12-30', checkout: '2027-01-03',
+      where: 'Dans la médina, tout se fait à pied.',
+      hotels: [
+        { name: 'Riad Jade Mogador', addr: 'Médina', price: 'dès ~45 €', why: 'Très bon rapport qualité-prix, terrasse avec vue sur la mer.' },
+        { name: 'Riad Al Medina', addr: 'Médina', price: 'dès ~50 €', why: 'Riad historique, service très bien noté.' },
+        { name: 'Emerald Riad', addr: 'Médina', price: 'dès ~60 €', why: 'Petit riad calme et soigné.' },
+        { name: 'Riad Dar Awil', addr: 'Médina', price: 'dès ~65 €', why: 'Souvent cité comme le meilleur rapport qualité-prix de la ville.' },
+        { name: 'Riad Maison du Sud', addr: 'Médina, à ~300 m de l\'océan', price: 'dès ~85 €', why: 'Maison du XVIIIe siècle entre deux grandes rues commerçantes.' }
+      ]
+    },
+    {
+      id: 'casablanca', city: 'Casablanca', when: 'Dim. 3 → lun. 4 janv. · 1 nuit', checkin: '2027-01-03', checkout: '2027-01-04',
+      where: 'Pas de riad ici : plutôt un hôtel simple au centre, pour être près de la mosquée le lundi matin.',
+      hotels: [
+        { name: 'Hotel Majestic Casablanca', addr: 'Centre-ville, ~2,5 km de la mosquée', price: 'dès ~30 €', why: 'Petit prix, parking gratuit (pratique en voiture).' },
+        { name: 'Windsor Hotel City Center', addr: 'Centre-ville', price: 'dès ~30 €', why: 'Central, petit-déjeuner apprécié.' },
+        { name: 'Mid Town Hotel Casablanca', addr: 'Rue Badr Assayab, quartier Gauthier', price: 'dès ~45 €', why: 'Appart-hôtel avec kitchenette, quartier animé.' },
+        { name: 'East West Hotel Casablanca', addr: 'Avenue Moulay Hassan Ier', price: 'prix à vérifier', why: 'Hôtel 3 étoiles central, restaurant et bar.' },
+        { name: 'Ibis Casablanca City Center', addr: 'Centre-ville, ~1,5 km de la mosquée', price: 'prix à vérifier', why: 'Sans surprise, l\'un des plus réservés près de la mosquée.' }
+      ]
+    },
+    {
+      id: 'rabat', city: 'Rabat', when: 'Lun. 4 → mer. 6 janv. · 2 nuits', checkin: '2027-01-04', checkout: '2027-01-06',
+      where: 'Dans la médina, près de la Kasbah des Oudayas : tout le centre historique à pied.',
+      hotels: [
+        { name: 'Riad Dar Soufa', addr: 'Médina', price: 'prix à vérifier', why: 'Petit budget sans sacrifier le charme, petit-déjeuner en terrasse.' },
+        { name: 'Riad Amaris', addr: 'Médina, ~12 min à pied des Oudayas', price: 'prix à vérifier', why: 'Souvent cité comme le meilleur riad milieu de gamme de Rabat.' },
+        { name: 'Riad Al Bahi', addr: 'Médina', price: 'prix à vérifier', why: 'Réputé pour ses petits-déjeuners copieux.' },
+        { name: 'Riad Dar Karima', addr: 'Médina, ~500 m des Oudayas', price: 'prix à vérifier', why: 'Bien placé entre la médina et la Kasbah.' },
+        { name: 'Riad Zyo', addr: 'Médina, ~3 min à pied des Oudayas', price: 'prix à vérifier (peut dépasser 100 €)', why: 'Plus stylé : petite piscine et terrasse sur le toit.' }
+      ]
+    },
+    {
+      id: 'fes', city: 'Fès', when: 'Mer. 6 → ven. 8 janv. · 2 nuits', checkin: '2027-01-06', checkout: '2027-01-08',
+      where: 'Dans la médina de Fès el-Bali. Demander au riad de venir vous chercher au parking : on s\'y perd facilement.',
+      hotels: [
+        { name: 'Dar Bouanania', addr: 'Médina, près de la médersa Bou Inania', price: 'moins de ~70 €', why: 'Petit riad familial, en plein cœur de la médina.' },
+        { name: 'Riad Noor Medina', addr: 'En bordure de la médina', price: '~65 à 75 €', why: 'Souvent cité comme le meilleur rapport qualité-prix.' },
+        { name: 'Riad Tizwa', addr: 'Médina, quartier Batha', price: '~60 à 110 €', why: 'Riad rénové, bien noté.' },
+        { name: 'Riad Dar Fes Medina', addr: '3 Lot Benjelloun, Ziat', price: 'dès ~70 €', why: 'Calme, un peu à l\'écart de l\'agitation.' },
+        { name: 'Dar Attajalli', addr: '6 Derb El Miter, R\'cif', price: '~65 à 95 €', why: 'Petite maison d\'hôtes près de la place R\'cif.' }
+      ]
+    }
+  ];
+
+  var cities = document.getElementById('cities'), list = document.getElementById('list');
+  STAYS.forEach(function (s) {
+    cities.insertAdjacentHTML('beforeend', '<li><a href="#' + s.id + '">' + s.city + '</a></li>');
+    var html = '<section class="card" id="' + s.id + '"><div class="dates">' + s.when + '</div><h2>' + s.city + '</h2>' +
+      '<p class="meta">' + s.where + '</p><ul class="hotels">';
+    s.hotels.forEach(function (h) {
+      var q = h.name + ', ' + s.city + ', Maroc';
+      var maps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+      var booking = 'https://www.booking.com/searchresults.fr.html?ss=' + encodeURIComponent(h.name + ' ' + s.city) +
+        '&checkin=' + s.checkin + '&checkout=' + s.checkout + '&group_adults=2&no_rooms=1&group_children=0';
+      html += '<li><div class="row"><span class="name">' + h.name + '</span><span class="price">' + h.price + '</span></div>' +
+        '<div class="addr">' + h.addr + ', ' + s.city + '</div>' +
+        '<div class="why">' + h.why + '</div>' +
+        '<div class="links"><a href="' + maps + '" target="_blank" rel="noopener">📍 Plan</a>' +
+        '<a href="' + booking + '" target="_blank" rel="noopener">🛏️ Booking à nos dates</a></div></li>';
+    });
+    html += '</ul></section>';
+    list.insertAdjacentHTML('beforeend', html);
+  });
+})();
+</script>
+</body>
+</html>
