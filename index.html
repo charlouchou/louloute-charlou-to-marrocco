@@ -95,6 +95,10 @@
   ul.see input { width: 18px; height: 18px; margin: 3px 0 0; flex: none; accent-color: var(--check); cursor: pointer; }
   ul.see input:checked + span b { color: var(--check); }
   ul.see b { font-weight: 600; }
+  ul.see .stars, .legend .stars { flex: none; margin-left: auto; padding-left: 8px; color: #d4a017; letter-spacing: 1px; font-size: 14px; white-space: nowrap; }
+  ul.see .stars.s1 { opacity: .7; }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--muted); font-size: 13px; margin: 0 0 16px; }
+  .legend .stars { margin: 0 4px 0 0; padding: 0; }
   ul.see .links { display: flex; gap: 14px; margin: -4px 0 4px 28px; font-size: 13px; }
   ul.see .links a { color: var(--muted); text-decoration: none; }
   ul.see .links a:hover { color: var(--accent); text-decoration: underline; }
@@ -147,6 +151,11 @@
 
   <div id="map" role="img" aria-label="Carte de l'itinéraire"></div>
   <p class="map-note">Pastilles grises : simples étapes dans la journée. Pointillés : le bateau vers Sète. Cliquer sur une ville pour y aller.</p>
+  <p class="legend">
+    <span><span class="stars">★★★</span>À ne pas manquer</span>
+    <span><span class="stars">★★☆</span>Intéressant</span>
+    <span><span class="stars">★☆☆</span>Si on a le temps</span>
+  </p>
 
   <div class="toolbar">
     <span class="total" id="total">0 visite choisie</span>
@@ -165,14 +174,14 @@
         <span class="badge">🎉 Réveillon du 31 sur place</span>
         <h3>À voir</h3>
         <ul class="see">
-          <li><b>La médina</b> : remparts blancs, volets bleus, classée à l'Unesco.</li>
-          <li><b>La Skala de la Ville</b> : la promenade sur les remparts et ses canons, idéale au coucher du soleil.</li>
-          <li><b>Le port de pêche</b> : barques bleues, criée et chantier naval. Poisson grillé sur les stands à la sortie du port.</li>
-          <li data-q="Bayt Dakira"><b>Le Mellah et Bayt Dakira</b> : l'ancien quartier juif et sa maison de la mémoire.</li>
-          <li data-q="Ensemble artisanal thuya"><b>Les ateliers de thuya</b> : marqueterie, la spécialité locale.</li>
-          <li data-q="Plage d'Essaouira"><b>La plage</b> : longue balade vers le sud, kitesurf et chameaux.</li>
-          <li data-q="Sidi Kaouki"><b>Sidi Kaouki</b> : plage sauvage à 30 min.</li>
-          <li data-q="Coopérative huile d'argan"><b>Une coopérative d'huile d'argan</b>, sur la route de Marrakech.</li>
+          <li data-stars="3"><b>La médina</b> : remparts blancs, volets bleus, classée à l'Unesco.</li>
+          <li data-stars="3"><b>La Skala de la Ville</b> : la promenade sur les remparts et ses canons, idéale au coucher du soleil.</li>
+          <li data-stars="3"><b>Le port de pêche</b> : barques bleues, criée et chantier naval. Poisson grillé sur les stands à la sortie du port.</li>
+          <li data-q="Bayt Dakira" data-stars="2"><b>Le Mellah et Bayt Dakira</b> : l'ancien quartier juif et sa maison de la mémoire.</li>
+          <li data-q="Ensemble artisanal thuya" data-stars="1"><b>Les ateliers de thuya</b> : marqueterie, la spécialité locale.</li>
+          <li data-q="Plage d'Essaouira" data-stars="2"><b>La plage</b> : longue balade vers le sud, kitesurf et chameaux.</li>
+          <li data-q="Sidi Kaouki" data-stars="1"><b>Sidi Kaouki</b> : plage sauvage à 30 min.</li>
+          <li data-q="Coopérative huile d'argan" data-stars="1"><b>Une coopérative d'huile d'argan</b>, sur la route de Marrakech.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -189,11 +198,11 @@
         <p class="meta">La mosquée Hassan II se visite le lundi matin avant de partir pour Rabat (horaires des visites guidées à vérifier).</p>
         <h3>À voir</h3>
         <ul class="see">
-          <li><b>La mosquée Hassan II</b> : construite en partie sur l'océan, l'une des rares visitables à l'intérieur (visite guidée).</li>
-          <li><b>La Corniche d'Aïn Diab</b> : promenade en bord de mer.</li>
-          <li><b>Le quartier des Habous</b> : la « nouvelle médina », librairies et pâtisseries.</li>
-          <li data-q="Boulevard Mohammed V"><b>Le centre Art déco</b> : immeubles des années 1930 autour du boulevard Mohammed V.</li>
-          <li><b>Le Marché central</b> : poissons et fruits de mer à déguster sur place.</li>
+          <li data-stars="3"><b>La mosquée Hassan II</b> : construite en partie sur l'océan, l'une des rares visitables à l'intérieur (visite guidée).</li>
+          <li data-stars="1"><b>La Corniche d'Aïn Diab</b> : promenade en bord de mer.</li>
+          <li data-stars="2"><b>Le quartier des Habous</b> : la « nouvelle médina », librairies et pâtisseries.</li>
+          <li data-q="Boulevard Mohammed V" data-stars="2"><b>Le centre Art déco</b> : immeubles des années 1930 autour du boulevard Mohammed V.</li>
+          <li data-stars="1"><b>Le Marché central</b> : poissons et fruits de mer à déguster sur place.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -209,12 +218,12 @@
         <div class="rating" data-score="4">Beaucoup à voir, ville calme et agréable</div>
         <h3>À voir</h3>
         <ul class="see">
-          <li><b>La Kasbah des Oudayas</b> : ruelles bleues et blanches, jardin andalou, vue sur l'embouchure.</li>
-          <li data-q="Tour Hassan"><b>La Tour Hassan et le Mausolée Mohammed V</b>.</li>
-          <li><b>Le Chellah</b> : ruines romaines et mérinides au milieu des jardins.</li>
-          <li data-q="Rue des Consuls"><b>La médina et la rue des Consuls</b> : tapis et artisanat.</li>
-          <li data-q="Musée Mohammed VI d'art moderne et contemporain"><b>Le Musée Mohammed VI</b> d'art moderne et contemporain.</li>
-          <li data-q="Salé"><b>Salé</b>, juste en face de l'autre côté du fleuve (tramway ou barque).</li>
+          <li data-stars="3"><b>La Kasbah des Oudayas</b> : ruelles bleues et blanches, jardin andalou, vue sur l'embouchure.</li>
+          <li data-q="Tour Hassan" data-stars="3"><b>La Tour Hassan et le Mausolée Mohammed V</b>.</li>
+          <li data-stars="3"><b>Le Chellah</b> : ruines romaines et mérinides au milieu des jardins.</li>
+          <li data-q="Rue des Consuls" data-stars="2"><b>La médina et la rue des Consuls</b> : tapis et artisanat.</li>
+          <li data-q="Musée Mohammed VI d'art moderne et contemporain" data-stars="1"><b>Le Musée Mohammed VI</b> d'art moderne et contemporain.</li>
+          <li data-q="Salé" data-stars="1"><b>Salé</b>, juste en face de l'autre côté du fleuve (tramway ou barque).</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -230,11 +239,11 @@
         <div class="rating" data-score="3">Intéressant, une demi-journée suffit</div>
         <h3>À voir</h3>
         <ul class="see">
-          <li><b>Bab Mansour</b> : l'une des plus belles portes du Maroc.</li>
-          <li><b>La place El Hedim</b> et la médina.</li>
-          <li><b>Le Mausolée de Moulay Ismaïl</b> et les greniers <b>Heri es-Souani</b>.</li>
-          <li data-q="Volubilis"><b>Les ruines romaines de Volubilis</b> (30 min), si le temps le permet.</li>
-          <li data-q="Moulay Idriss Zerhoun"><b>Moulay Idriss</b> : ville sainte perchée, juste à côté de Volubilis.</li>
+          <li data-stars="3"><b>Bab Mansour</b> : l'une des plus belles portes du Maroc.</li>
+          <li data-stars="2"><b>La place El Hedim</b> et la médina.</li>
+          <li data-stars="2"><b>Le Mausolée de Moulay Ismaïl</b> et les greniers <b>Heri es-Souani</b>.</li>
+          <li data-q="Volubilis" data-stars="3"><b>Les ruines romaines de Volubilis</b> (30 min), si le temps le permet.</li>
+          <li data-q="Moulay Idriss Zerhoun" data-stars="2"><b>Moulay Idriss</b> : ville sainte perchée, juste à côté de Volubilis.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -251,16 +260,16 @@
         <span class="badge">Journée entière le jeudi 7</span>
         <h3>À voir</h3>
         <ul class="see">
-          <li><b>Bab Boujloud</b> : la « porte bleue », entrée de la médina.</li>
-          <li><b>La médina de Fès el-Bali</b> : immense, un guide aide beaucoup.</li>
-          <li><b>Les tanneries Chouara</b>, vues depuis les terrasses des boutiques.</li>
-          <li data-q="Médersa Bou Inania"><b>Les médersas Bou Inania et Al-Attarine</b>.</li>
-          <li><b>La mosquée Al Quaraouiyine</b> (vue de l'extérieur).</li>
-          <li><b>La place Seffarine</b> : les dinandiers qui martèlent le cuivre.</li>
-          <li><b>Le musée Nejjarine</b> des arts et métiers du bois.</li>
-          <li data-q="Dar el-Makhzen"><b>Les portes dorées du Palais royal</b> (Dar el-Makhzen) et le Mellah.</li>
-          <li><b>Le jardin Jnan Sbil</b>, pour une pause au calme.</li>
-          <li data-q="Tombeaux mérinides"><b>Le Borj Nord ou les tombeaux mérinides</b> : panorama sur la médina au coucher du soleil.</li>
+          <li data-stars="2"><b>Bab Boujloud</b> : la « porte bleue », entrée de la médina.</li>
+          <li data-stars="3"><b>La médina de Fès el-Bali</b> : immense, un guide aide beaucoup.</li>
+          <li data-stars="3"><b>Les tanneries Chouara</b>, vues depuis les terrasses des boutiques.</li>
+          <li data-q="Médersa Bou Inania" data-stars="3"><b>Les médersas Bou Inania et Al-Attarine</b>.</li>
+          <li data-stars="2"><b>La mosquée Al Quaraouiyine</b> (vue de l'extérieur).</li>
+          <li data-stars="2"><b>La place Seffarine</b> : les dinandiers qui martèlent le cuivre.</li>
+          <li data-stars="2"><b>Le musée Nejjarine</b> des arts et métiers du bois.</li>
+          <li data-q="Dar el-Makhzen" data-stars="2"><b>Les portes dorées du Palais royal</b> (Dar el-Makhzen) et le Mellah.</li>
+          <li data-stars="1"><b>Le jardin Jnan Sbil</b>, pour une pause au calme.</li>
+          <li data-q="Tombeaux mérinides" data-stars="2"><b>Le Borj Nord ou les tombeaux mérinides</b> : panorama sur la médina au coucher du soleil.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -276,10 +285,10 @@
         <div class="rating" data-score="3">Petite ville, surtout pour l'ambiance</div>
         <h3>À voir</h3>
         <ul class="see">
-          <li data-q="Médina de Chefchaouen"><b>La médina bleue</b> : se perdre dans les ruelles.</li>
-          <li><b>La place Outa el Hammam</b> et la Kasbah.</li>
-          <li><b>Ras el Maa</b> : la source et les lavoirs à l'entrée de la ville.</li>
-          <li><b>La mosquée espagnole</b> : 30 min de marche pour la vue (à sauter si on manque de temps).</li>
+          <li data-q="Médina de Chefchaouen" data-stars="3"><b>La médina bleue</b> : se perdre dans les ruelles.</li>
+          <li data-stars="2"><b>La place Outa el Hammam</b> et la Kasbah.</li>
+          <li data-stars="1"><b>Ras el Maa</b> : la source et les lavoirs à l'entrée de la ville.</li>
+          <li data-stars="2"><b>La mosquée espagnole</b> : 30 min de marche pour la vue (à sauter si on manque de temps).</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -295,10 +304,10 @@
         <div class="rating" data-score="3">Belle médina, peu touristique</div>
         <h3>À voir</h3>
         <ul class="see">
-          <li><b>La médina</b> : blanche, classée à l'Unesco, très authentique.</li>
-          <li><b>La place Hassan II</b> et les portes du Palais royal.</li>
-          <li><b>L'Ensanche</b> : le quartier espagnol, façades blanches à balcons.</li>
-          <li data-q="Dar Sanaa"><b>L'École des arts et métiers</b> (Dar Sanaa) : zellige, bois sculpté, broderie.</li>
+          <li data-stars="3"><b>La médina</b> : blanche, classée à l'Unesco, très authentique.</li>
+          <li data-stars="1"><b>La place Hassan II</b> et les portes du Palais royal.</li>
+          <li data-stars="2"><b>L'Ensanche</b> : le quartier espagnol, façades blanches à balcons.</li>
+          <li data-q="Dar Sanaa" data-stars="2"><b>L'École des arts et métiers</b> (Dar Sanaa) : zellige, bois sculpté, broderie.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -314,10 +323,10 @@
         <div class="rating" data-score="4">Beaucoup à voir, mais peu de temps ici</div>
         <h3>À voir, si le temps le permet</h3>
         <ul class="see">
-          <li data-q="Kasbah"><b>La Kasbah</b> et son musée, vue sur le détroit.</li>
-          <li><b>Le Grand Socco et le Petit Socco</b>.</li>
-          <li><b>Le Café Hafa</b> : thé à la menthe sur les terrasses face à la mer.</li>
-          <li><b>Le Cap Spartel et les grottes d'Hercule</b>, là où l'Atlantique rencontre la Méditerranée.</li>
+          <li data-q="Kasbah" data-stars="3"><b>La Kasbah</b> et son musée, vue sur le détroit.</li>
+          <li data-stars="2"><b>Le Grand Socco et le Petit Socco</b>.</li>
+          <li data-stars="2"><b>Le Café Hafa</b> : thé à la menthe sur les terrasses face à la mer.</li>
+          <li data-stars="2"><b>Le Cap Spartel et les grottes d'Hercule</b>, là où l'Atlantique rencontre la Méditerranée.</li>
         </ul>
         <p class="warn">⚠️ <b>Journée du 8 très chargée</b> : environ 6 h de route en tout. Vérifier sur le billet le port de départ (en général <b>Tanger Med</b>, à environ 45 min de Tanger et à 1 h de Tétouan) et l'heure limite d'embarquement, souvent plusieurs heures avant le départ. Si c'est Tanger Med, on peut aller directement de Tétouan au port.</p>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
@@ -382,6 +391,14 @@
       var span = document.createElement('span');
       span.innerHTML = li.innerHTML;
       label.appendChild(box); label.appendChild(span);
+      var n = +li.dataset.stars;
+      if (n) {
+        var st = document.createElement('span');
+        st.className = 'stars s' + n;
+        st.title = ['', 'Si on a le temps', 'Intéressant', 'À ne pas manquer'][n];
+        st.textContent = '★'.repeat(n) + '☆'.repeat(3 - n);
+        label.appendChild(st);
+      }
       li.innerHTML = ''; li.appendChild(label);
       // liens Plan (Google Maps) et Photos (recherche d'images)
       var place = (li.dataset.q || span.querySelector('b').textContent) + ', ' + city;
