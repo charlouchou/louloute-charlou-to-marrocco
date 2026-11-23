@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Maroc 2026–2027</title>
+<title>Louloute &amp; Charlou to Marrocco</title>
 <meta name="description" content="Itinéraire du voyage au Maroc, du 30 décembre 2026 au 10 janvier 2027.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -133,7 +133,7 @@
 <div class="wrap">
 
   <header>
-    <div class="kicker">Rabat Project Charlou</div>
+    <div class="kicker">Louloute &amp; Charlou to Marrocco</div>
     <h1>Maroc, du 30 décembre au 10 janvier</h1>
     <p class="lead">D'Essaouira à Tanger en passant par le réveillon au bord de l'Atlantique, puis retour en bateau jusqu'à Sète.</p>
     <ul class="route">
@@ -349,7 +349,7 @@
   <footer>
     Durées de trajet approximatives, à vérifier avant de partir. La note de chaque ville indique s'il y a beaucoup ou peu de choses à voir.
     Les cases cochées sont mémorisées sur cet appareil uniquement.
-    Carte : © OpenStreetMap.
+    Carte : Esri, OpenStreetMap.
     Photos : <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (licences libres, auteurs sur la page de chaque photo).
   </footer>
 
@@ -458,10 +458,11 @@
       { id: 'tanger',      name: 'Tanger',      ll: [35.7595, -5.8340] }
     ];
     var sete = [43.4028, 3.6970];
-    var map = L.map('map', { scrollWheelZoom: false });
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    // Sur téléphone : un doigt fait défiler la page, deux doigts zooment sur la carte
+    var map = L.map('map', { scrollWheelZoom: false, dragging: !L.Browser.mobile, tap: false });
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 17,
+      attribution: 'Fond de carte © Esri, HERE, Garmin, OpenStreetMap'
     }).addTo(map);
     L.polyline(stops.map(function (s) { return s.ll; }), { color: '#b5482a', weight: 3 }).addTo(map);
     L.polyline([stops[stops.length - 1].ll, [36.2, -4.5], [37.5, 0.5], sete], { color: '#1f7a7a', weight: 3, dashArray: '6 8' })
