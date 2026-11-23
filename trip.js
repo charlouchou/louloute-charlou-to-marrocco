@@ -14,12 +14,12 @@
     '2027-01-07': ['fes'],
     '2027-01-08': ['chefchaouen', 'tetouan', 'tanger'],
     '2027-01-09': ['sete'],
-    '2027-01-10': ['sete']
+    '2027-01-10': ['sete', 'paris']
   };
   var FIRST = '2026-12-30', LAST = '2027-01-10', TOTAL = 12;
 
   var NAMES = { essaouira: 'Essaouira', casablanca: 'Casablanca', rabat: 'Rabat', meknes: 'Meknès', fes: 'Fès',
-                chefchaouen: 'Chefchaouen', tetouan: 'Tétouan', tanger: 'Tanger', sete: 'Sète' };
+                chefchaouen: 'Chefchaouen', tetouan: 'Tétouan', tanger: 'Tanger', sete: 'Sète', paris: 'Paris' };
 
   function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
   function parse(s) { var p = s.split('-'); return new Date(+p[0], p[1] - 1, +p[2]); }
