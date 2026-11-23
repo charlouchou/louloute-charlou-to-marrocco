@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infos pratiques · Louloute &amp; Charlou</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="page">
+<div class="wrap">
+
+  <nav class="topnav">
+    <a href="index.html">Itinéraire</a>
+    <a href="dormir.html">Où dormir</a>
+    <a href="infos.html" aria-current="page">Infos pratiques</a>
+  </nav>
+
+  <header>
+    <div class="kicker">Louloute &amp; Charlou to Marrocco</div>
+    <h1>Infos pratiques</h1>
+    <ul class="route">
+      <li><a href="#darija">Darija</a></li>
+      <li><a href="#change">Dirham → euro</a></li>
+      <li><a href="#urgences">Urgences</a></li>
+      <li><a href="#histoire">Histoire</a></li>
+    </ul>
+  </header>
+
+  <main>
+
+    <section class="card" id="darija">
+      <h2>Quelques mots de darija</h2>
+      <p class="meta">La darija est l'arabe marocain. Le français est très bien compris dans les villes, mais quelques mots font toujours plaisir. Le « 3 » se prononce comme un « a » venu du fond de la gorge et le « kh » comme la jota espagnole.</p>
+
+      <h3>Politesse</h3>
+      <table class="vocab">
+        <tr><th>Français</th><th>Darija</th><th>Astuce</th></tr>
+        <tr><td>Bonjour</td><td>Salam (ou-alikoum)</td><td>Réponse : wa-alikoum salam</td></tr>
+        <tr><td>Bonjour (le matin)</td><td>Sbah l-khir</td><td></td></tr>
+        <tr><td>Bonsoir</td><td>Msa l-khir</td><td></td></tr>
+        <tr><td>Ça va ?</td><td>Labas ?</td><td>Réponse : labas, hamdoulillah</td></tr>
+        <tr><td>Merci (beaucoup)</td><td>Choukran (bzzaf)</td><td></td></tr>
+        <tr><td>S'il te plaît</td><td>3afak</td><td>Se dit « afak »</td></tr>
+        <tr><td>Oui / Non</td><td>Iyeh / La</td><td></td></tr>
+        <tr><td>Non merci</td><td>La, choukran</td><td>Le plus utile dans les souks</td></tr>
+        <tr><td>D'accord</td><td>Wakha</td><td></td></tr>
+        <tr><td>Pardon, excuse-moi</td><td>Smeh liya</td><td></td></tr>
+        <tr><td>Au revoir</td><td>Bslama</td><td></td></tr>
+        <tr><td>Si Dieu le veut</td><td>Inchallah</td><td>Partout, tout le temps</td></tr>
+      </table>
+
+      <h3>Au souk et au restaurant</h3>
+      <table class="vocab">
+        <tr><th>Français</th><th>Darija</th><th>Astuce</th></tr>
+        <tr><td>Combien ?</td><td>Bchhal ?</td><td></td></tr>
+        <tr><td>C'est trop cher</td><td>Ghali bzzaf</td><td>À dire avec le sourire</td></tr>
+        <tr><td>Je ne veux pas</td><td>Ma bghitch</td><td></td></tr>
+        <tr><td>Où est… ?</td><td>Fin kayn… ?</td><td></td></tr>
+        <tr><td>L'addition, s'il te plaît</td><td>L-hsab, 3afak</td><td></td></tr>
+        <tr><td>De l'eau</td><td>Lma</td><td></td></tr>
+        <tr><td>Le thé</td><td>Atay</td><td></td></tr>
+        <tr><td>C'est bon, c'est bien</td><td>Mzyan</td><td></td></tr>
+        <tr><td>Délicieux</td><td>Bnin</td><td></td></tr>
+        <tr><td>Pas de problème</td><td>Machi mouchkil</td><td></td></tr>
+        <tr><td>Je ne comprends pas</td><td>Ma fhemtch</td><td></td></tr>
+        <tr><td>On y va !</td><td>Yallah !</td><td></td></tr>
+      </table>
+
+      <h3>Compter</h3>
+      <table class="vocab">
+        <tr><td>1 · 2 · 3 · 4 · 5</td><td>wahed · jouj · tlata · rb3a · khamsa</td><td></td></tr>
+        <tr><td>6 · 7 · 8 · 9 · 10</td><td>setta · seb3a · tmenya · tes3oud · 3achra</td><td></td></tr>
+        <tr><td>20 · 50 · 100</td><td>3echrin · khamsin · mya</td><td></td></tr>
+      </table>
+      <p class="meta" style="margin-top:10px">Dans les souks, certains vendeurs comptent encore en « rials » : 20 rials = 1 dirham. Si un prix semble 20 fois trop élevé, c'est sans doute ça.</p>
+    </section>
+
+    <section class="card" id="change">
+      <h2>Dirham → euro</h2>
+      <p class="meta" id="rate-info">Chargement du taux du jour…</p>
+      <div class="converter">
+        <input type="number" id="mad" value="100" min="0" inputmode="decimal" aria-label="Montant en dirhams"> <span class="eq">DH =</span>
+        <input type="number" id="eur" min="0" inputmode="decimal" aria-label="Montant en euros"> <span class="eq">€</span>
+      </div>
+      <div class="rate-grid" id="rate-grid"></div>
+      <h3>Bon à savoir</h3>
+      <ul class="see" style="list-style:disc;padding-left:18px">
+        <li>Le dirham ne s'achète pratiquement pas en France : on change sur place (bureaux de change, aéroport) ou on retire au distributeur.</li>
+        <li>Les petits restos, taxis et souks se paient en espèces. Garder des petites coupures.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="urgences">
+      <h2>Numéros d'urgence</h2>
+      <div class="sos">
+        <a href="tel:19"><b>19</b>Police (en ville)</a>
+        <a href="tel:177"><b>177</b>Gendarmerie royale (hors des villes, sur la route)</a>
+        <a href="tel:15"><b>15</b>Pompiers et ambulances</a>
+      </div>
+      <h3>Côté France</h3>
+      <ul class="see" style="list-style:disc;padding-left:18px">
+        <li><a href="https://ma.ambafrance.org/" target="_blank" rel="noopener">Ambassade de France au Maroc</a> : coordonnées de l'ambassade (Rabat) et des consulats (Casablanca, Rabat, Fès, Tanger…).</li>
+        <li><a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/maroc/" target="_blank" rel="noopener">Conseils aux voyageurs pour le Maroc</a> (ministère des Affaires étrangères).</li>
+        <li><a href="https://pastel.diplomatie.gouv.fr/fildariane/" target="_blank" rel="noopener">Fil d'Ariane</a> : s'inscrire avant de partir pour être prévenus en cas de problème.</li>
+        <li>Carte bancaire perdue ou volée : appeler le numéro d'opposition de votre banque (noté au dos de la carte ou dans l'appli).</li>
+      </ul>
+    </section>
+
+    <section class="card" id="histoire">
+      <h2>Le Maroc en quelques dates</h2>
+      <p class="meta">Une histoire très résumée, avec les villes du voyage où on en voit les traces.</p>
+      <ol class="timeline">
+        <li><span class="when">Antiquité</span><span>Les Amazighs (Berbères) peuplent le pays depuis des millénaires. Les Phéniciens puis Carthage installent des comptoirs sur la côte, jusqu'à l'île face à Essaouira.<span class="where">Essaouira</span></span></li>
+        <li><span class="when">Ier siècle</span><span>Rome annexe la région, qui devient la Maurétanie Tingitane, du nom de Tingis, l'actuelle Tanger. Volubilis en est une grande ville.<span class="where">Volubilis</span><span class="where">Tanger</span></span></li>
+        <li><span class="when">VIIe–VIIIe s.</span><span>Arrivée des Arabes et de l'islam. À la fin du VIIIe siècle, Idriss Ier fonde la première dynastie marocaine, et Fès naît sous les Idrissides.<span class="where">Moulay Idriss</span><span class="where">Fès</span></span></li>
+        <li><span class="when">859</span><span>Fatima al-Fihri fonde à Fès la Quaraouiyine, souvent présentée comme la plus ancienne université encore en activité.<span class="where">Fès</span></span></li>
+        <li><span class="when">XIe–XIIe s.</span><span>Deux empires berbères règnent jusqu'en Espagne : les Almoravides, qui fondent Marrakech, puis les Almohades, qui lancent à Rabat la Tour Hassan, restée inachevée.<span class="where">Rabat</span></span></li>
+        <li><span class="when">XIIIe–XVe s.</span><span>Les Mérinides font de Fès leur capitale et y construisent les grandes médersas. À Rabat, le Chellah devient leur nécropole.<span class="where">Fès</span><span class="where">Rabat</span></span></li>
+        <li><span class="when">Fin du XVe s.</span><span>Des musulmans et des juifs chassés d'Espagne s'installent dans le nord. Chefchaouen est fondée et Tétouan reconstruite par des Andalous.<span class="where">Chefchaouen</span><span class="where">Tétouan</span></span></li>
+        <li><span class="when">1666</span><span>Début de la dynastie alaouite, toujours au pouvoir. Moulay Ismaïl fait de Meknès sa capitale impériale.<span class="where">Meknès</span></span></li>
+        <li><span class="when">1760s</span><span>Le sultan Mohammed ben Abdallah fait construire Essaouira, port fortifié ouvert au commerce avec l'Europe.<span class="where">Essaouira</span></span></li>
+        <li><span class="when">1912</span><span>Protectorat français sur la majeure partie du pays, avec Rabat pour capitale. Le nord passe sous protectorat espagnol, avec Tétouan pour capitale. Tanger devient ensuite une zone internationale.<span class="where">Rabat</span><span class="where">Tétouan</span><span class="where">Tanger</span></span></li>
+        <li><span class="when">1956</span><span>Indépendance sous Mohammed V, dont le mausolée se trouve à Rabat.<span class="where">Rabat</span></span></li>
+        <li><span class="when">1961–1999</span><span>Règne de Hassan II. La grande mosquée de Casablanca est inaugurée en 1993.<span class="where">Casablanca</span></span></li>
+        <li><span class="when">Depuis 1999</span><span>Règne de Mohammed VI. En 2011, la nouvelle Constitution fait de l'amazigh une langue officielle, à côté de l'arabe.</span></li>
+      </ol>
+    </section>
+
+  </main>
+
+  <footer>Taux de change : <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">ExchangeRate-API</a>, mis à jour une fois par jour.</footer>
+</div>
+
+<script>
+(function () {
+  var FALLBACK = 10.9; // valeur approximative si pas de réseau
+  var rate = FALLBACK;
+  var mad = document.getElementById('mad'), eur = document.getElementById('eur');
+  var info = document.getElementById('rate-info'), grid = document.getElementById('rate-grid');
+  function fmt(n, d) { return n.toLocaleString('fr-FR', { maximumFractionDigits: d }); }
+  function fromMad() { eur.value = mad.value === '' ? '' : (mad.value / rate).toFixed(2); }
+  function fromEur() { mad.value = eur.value === '' ? '' : (eur.value * rate).toFixed(0); }
+  function draw() {
+    grid.innerHTML = [10, 20, 50, 100, 200, 500].map(function (v) {
+      return '<div><b>' + v + ' DH</b> ≈ ' + fmt(v / rate, 2) + ' €</div>';
+    }).join('');
+    fromMad();
+  }
+  mad.addEventListener('input', fromMad);
+  eur.addEventListener('input', fromEur);
+  info.textContent = '1 € ≈ ' + fmt(FALLBACK, 1) + ' DH (valeur approximative, sans connexion).';
+  draw();
+  fetch('https://open.er-api.com/v6/latest/EUR').then(function (r) { return r.json(); }).then(function (d) {
+    if (!d.rates || !d.rates.MAD) return;
+    rate = d.rates.MAD;
+    var when = new Date(d.time_last_update_utc).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+    info.textContent = '1 € = ' + fmt(rate, 2) + ' DH · 1 DH = ' + fmt(1 / rate, 3) + ' € (taux du ' + when + ').';
+    draw();
+  }).catch(function () {});
+})();
+</script>
+</body>
+</html>
