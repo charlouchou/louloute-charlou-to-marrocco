@@ -21,8 +21,8 @@
   <header>
     <div class="kicker">Louloute &amp; Charlou to Marrocco</div>
     <h1>Où dormir</h1>
-    <p class="lead">5 idées par ville, centrales, entre 30 et 100 € la nuit.</p>
-    <p class="warn">⚠️ Les prix viennent de guides en ligne et sont indicatifs. Autour du Nouvel An, ils montent et les riads se remplissent vite : <b>à réserver tôt, surtout à Essaouira</b>. Le lien <b>Booking</b> ouvre la recherche aux dates du voyage, pour 2 personnes, avec le vrai prix.</p>
+    <p class="lead">5 idées par ville (Casablanca, Rabat, Fès), centrales, entre 30 et 100 € la nuit.</p>
+    <p class="warn">⚠️ Les prix viennent de guides en ligne et sont indicatifs. Autour du Nouvel An, ils montent et les riads se remplissent vite : <b>à réserver tôt</b>. Le lien <b>Booking</b> ouvre la recherche aux dates du voyage, pour 2 personnes, avec le vrai prix.</p>
     <ul class="route" id="cities"></ul>
   </header>
 
@@ -36,17 +36,6 @@
 <script>
 (function () {
   var STAYS = [
-    {
-      id: 'essaouira', city: 'Essaouira', when: 'Mer. 30 déc. → dim. 3 janv. · 4 nuits', checkin: '2026-12-30', checkout: '2027-01-03',
-      where: 'Dans la médina, tout se fait à pied.',
-      hotels: [
-        { name: 'Riad Jade Mogador', addr: 'Médina', price: 'dès ~45 €', why: 'Très bon rapport qualité-prix, terrasse avec vue sur la mer.' },
-        { name: 'Riad Al Medina', addr: 'Médina', price: 'dès ~50 €', why: 'Riad historique, service très bien noté.' },
-        { name: 'Emerald Riad', addr: 'Médina', price: 'dès ~60 €', why: 'Petit riad calme et soigné.' },
-        { name: 'Riad Dar Awil', addr: 'Médina', price: 'dès ~65 €', why: 'Souvent cité comme le meilleur rapport qualité-prix de la ville.' },
-        { name: 'Riad Maison du Sud', addr: 'Médina, à ~300 m de l\'océan', price: 'dès ~85 €', why: 'Maison du XVIIIe siècle entre deux grandes rues commerçantes.' }
-      ]
-    },
     {
       id: 'casablanca', city: 'Casablanca', when: 'Dim. 3 → lun. 4 janv. · 1 nuit', checkin: '2027-01-03', checkout: '2027-01-04',
       where: 'Pas de riad ici : plutôt un hôtel simple au centre, pour être près de la mosquée le lundi matin.',
@@ -90,12 +79,14 @@
     s.hotels.forEach(function (h) {
       var q = h.name + ', ' + s.city + ', Maroc';
       var maps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+      var photos = 'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(h.name + ' ' + s.city);
       var booking = 'https://www.booking.com/searchresults.fr.html?ss=' + encodeURIComponent(h.name + ' ' + s.city) +
         '&checkin=' + s.checkin + '&checkout=' + s.checkout + '&group_adults=2&no_rooms=1&group_children=0';
       html += '<li><div class="row"><span class="name">' + h.name + '</span><span class="price">' + h.price + '</span></div>' +
         '<div class="addr">' + h.addr + ', ' + s.city + '</div>' +
         '<div class="why">' + h.why + '</div>' +
-        '<div class="links"><a href="' + maps + '" target="_blank" rel="noopener">📍 Plan</a>' +
+        '<div class="links"><a href="' + photos + '" target="_blank" rel="noopener">📷 Photos</a>' +
+        '<a href="' + maps + '" target="_blank" rel="noopener">📍 Plan</a>' +
         '<a href="' + booking + '" target="_blank" rel="noopener">🛏️ Booking à nos dates</a></div></li>';
     });
     html += '</ul></section>';

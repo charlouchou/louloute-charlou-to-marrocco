@@ -22,8 +22,8 @@
   </nav>
 
   <header>
-    <div class="kicker">Louloute &amp; Charlou to Marrocco</div>
-    <h1>Maroc, du 30 décembre au 10 janvier</h1>
+    <h1>Louloute &amp; Charlou to Marrocco</h1>
+    <div class="kicker">Maroc · du 30 décembre au 10 janvier</div>
     <p class="lead">D'Essaouira à Tanger en passant par le réveillon au bord de l'Atlantique, puis retour en bateau jusqu'à Sète.</p>
     <div class="countdown" id="countdown" hidden></div>
     <ul class="route">
@@ -47,9 +47,16 @@
     <span><span class="stars">★☆☆</span>Si on a le temps</span>
   </p>
 
+  <div class="who-legend">
+    <b>Deux listes de souhaits :</b>
+    <span><input type="checkbox" class="box-c" checked disabled aria-hidden="true"> les carrés pour <b>Charles</b></span>
+    <span><input type="checkbox" class="box-l" checked disabled aria-hidden="true"> les ronds pour <b>Louise</b></span>
+    <span>💞 quand on veut tous les deux</span>
+  </div>
+
   <div class="toolbar">
-    <span class="total" id="total">0 visite choisie</span>
-    <label><input type="checkbox" id="only-picked"> Afficher seulement ma sélection</label>
+    <span class="total" id="total"></span>
+    <label><input type="checkbox" id="only-picked"> Afficher seulement nos souhaits</label>
     <button class="link" id="sync-status" type="button" hidden></button>
     <button class="link" id="reset" type="button">Tout décocher</button>
   </div>
@@ -69,8 +76,8 @@
           <li data-stars="3"><b>La Skala de la Ville</b> : la promenade sur les remparts et ses canons, idéale au coucher du soleil.</li>
           <li data-stars="3"><b>Le port de pêche</b> : barques bleues, criée et chantier naval. Poisson grillé sur les stands à la sortie du port.</li>
           <li data-q="Bayt Dakira" data-stars="2"><b>Le Mellah et Bayt Dakira</b> : l'ancien quartier juif et sa maison de la mémoire.</li>
-          <li data-q="Ensemble artisanal thuya" data-stars="1"><b>Les ateliers de thuya</b> : marqueterie, la spécialité locale.</li>
           <li data-q="Plage d'Essaouira" data-stars="2"><b>La plage</b> : longue balade vers le sud, kitesurf et chameaux.</li>
+          <li data-q="Ensemble artisanal thuya" data-stars="1"><b>Les ateliers de thuya</b> : marqueterie, la spécialité locale.</li>
           <li data-q="Sidi Kaouki" data-stars="1"><b>Sidi Kaouki</b> : plage sauvage à 30 min.</li>
           <li data-q="Coopérative huile d'argan" data-stars="1"><b>Une coopérative d'huile d'argan</b>, sur la route de Marrakech.</li>
         </ul>
@@ -89,10 +96,11 @@
         <p class="meta">La mosquée Hassan II se visite le lundi matin avant de partir pour Rabat (horaires des visites guidées à vérifier).</p>
         <h3>À voir</h3>
         <ul class="see">
+          <li data-stars="3" data-nolinks="1"><b>Croiser Yassine</b></li>
           <li data-stars="3"><b>La mosquée Hassan II</b> : construite en partie sur l'océan, l'une des rares visitables à l'intérieur (visite guidée).</li>
-          <li data-stars="1"><b>La Corniche d'Aïn Diab</b> : promenade en bord de mer.</li>
           <li data-stars="2"><b>Le quartier des Habous</b> : la « nouvelle médina », librairies et pâtisseries.</li>
           <li data-q="Boulevard Mohammed V" data-stars="2"><b>Le centre Art déco</b> : immeubles des années 1930 autour du boulevard Mohammed V.</li>
+          <li data-stars="1"><b>La Corniche d'Aïn Diab</b> : promenade en bord de mer.</li>
           <li data-stars="1"><b>Le Marché central</b> : poissons et fruits de mer à déguster sur place.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
@@ -109,6 +117,7 @@
         <div class="rating" data-score="4">Beaucoup à voir, ville calme et agréable</div>
         <h3>À voir</h3>
         <ul class="see">
+          <li data-stars="3" data-nolinks="1"><b>Traîner dans la rue</b> et se projeter sur 3 ans sur place.</li>
           <li data-stars="3"><b>La Kasbah des Oudayas</b> : ruelles bleues et blanches, jardin andalou, vue sur l'embouchure.</li>
           <li data-q="Tour Hassan" data-stars="3"><b>La Tour Hassan et le Mausolée Mohammed V</b>.</li>
           <li data-stars="3"><b>Le Chellah</b> : ruines romaines et mérinides au milieu des jardins.</li>
@@ -131,9 +140,9 @@
         <h3>À voir</h3>
         <ul class="see">
           <li data-stars="3"><b>Bab Mansour</b> : l'une des plus belles portes du Maroc.</li>
+          <li data-q="Volubilis" data-stars="3"><b>Les ruines romaines de Volubilis</b> (30 min), si le temps le permet.</li>
           <li data-stars="2"><b>La place El Hedim</b> et la médina.</li>
           <li data-stars="2"><b>Le Mausolée de Moulay Ismaïl</b> et les greniers <b>Heri es-Souani</b>.</li>
-          <li data-q="Volubilis" data-stars="3"><b>Les ruines romaines de Volubilis</b> (30 min), si le temps le permet.</li>
           <li data-q="Moulay Idriss Zerhoun" data-stars="2"><b>Moulay Idriss</b> : ville sainte perchée, juste à côté de Volubilis.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
@@ -151,16 +160,16 @@
         <span class="badge">Journée entière le jeudi 7</span>
         <h3>À voir</h3>
         <ul class="see">
-          <li data-stars="2"><b>Bab Boujloud</b> : la « porte bleue », entrée de la médina.</li>
           <li data-stars="3"><b>La médina de Fès el-Bali</b> : immense, un guide aide beaucoup.</li>
           <li data-stars="3"><b>Les tanneries Chouara</b>, vues depuis les terrasses des boutiques.</li>
           <li data-q="Médersa Bou Inania" data-stars="3"><b>Les médersas Bou Inania et Al-Attarine</b>.</li>
+          <li data-stars="2"><b>Bab Boujloud</b> : la « porte bleue », entrée de la médina.</li>
           <li data-stars="2"><b>La mosquée Al Quaraouiyine</b> (vue de l'extérieur).</li>
           <li data-stars="2"><b>La place Seffarine</b> : les dinandiers qui martèlent le cuivre.</li>
           <li data-stars="2"><b>Le musée Nejjarine</b> des arts et métiers du bois.</li>
           <li data-q="Dar el-Makhzen" data-stars="2"><b>Les portes dorées du Palais royal</b> (Dar el-Makhzen) et le Mellah.</li>
-          <li data-stars="1"><b>Le jardin Jnan Sbil</b>, pour une pause au calme.</li>
           <li data-q="Tombeaux mérinides" data-stars="2"><b>Le Borj Nord ou les tombeaux mérinides</b> : panorama sur la médina au coucher du soleil.</li>
+          <li data-stars="1"><b>Le jardin Jnan Sbil</b>, pour une pause au calme.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -178,8 +187,8 @@
         <ul class="see">
           <li data-q="Médina de Chefchaouen" data-stars="3"><b>La médina bleue</b> : se perdre dans les ruelles.</li>
           <li data-stars="2"><b>La place Outa el Hammam</b> et la Kasbah.</li>
-          <li data-stars="1"><b>Ras el Maa</b> : la source et les lavoirs à l'entrée de la ville.</li>
           <li data-stars="2"><b>La mosquée espagnole</b> : 30 min de marche pour la vue (à sauter si on manque de temps).</li>
+          <li data-stars="1"><b>Ras el Maa</b> : la source et les lavoirs à l'entrée de la ville.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -196,9 +205,9 @@
         <h3>À voir</h3>
         <ul class="see">
           <li data-stars="3"><b>La médina</b> : blanche, classée à l'Unesco, très authentique.</li>
-          <li data-stars="1"><b>La place Hassan II</b> et les portes du Palais royal.</li>
           <li data-stars="2"><b>L'Ensanche</b> : le quartier espagnol, façades blanches à balcons.</li>
           <li data-q="Dar Sanaa" data-stars="2"><b>L'École des arts et métiers</b> (Dar Sanaa) : zellige, bois sculpté, broderie.</li>
+          <li data-stars="1"><b>La place Hassan II</b> et les portes du Palais royal.</li>
         </ul>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
@@ -219,7 +228,6 @@
           <li data-stars="2"><b>Le Café Hafa</b> : thé à la menthe sur les terrasses face à la mer.</li>
           <li data-stars="2"><b>Le Cap Spartel et les grottes d'Hercule</b>, là où l'Atlantique rencontre la Méditerranée.</li>
         </ul>
-        <p class="warn">⚠️ <b>Journée du 8 très chargée</b> : environ 6 h de route en tout. Vérifier sur le billet le port de départ (en général <b>Tanger Med</b>, à environ 45 min de Tanger et à 1 h de Tétouan) et l'heure limite d'embarquement, souvent plusieurs heures avant le départ. Si c'est Tanger Med, on peut aller directement de Tétouan au port.</p>
         <button class="photo-btn" type="button">📷 Voir les photos</button>
         <div class="gallery"></div>
       </div>
@@ -269,44 +277,69 @@
     el.prepend(pips);
   });
 
-  /* ---------- Checklist ---------- */
+  /* ---------- Double checklist : carrés = Charles, ronds = Louise ---------- */
+  // Chaque choix est mémorisé sous la forme « c|visite » (Charles) ou « l|visite » (Louise).
+  var WHO = [
+    { p: 'c', name: 'Charles', cls: 'box-c' },
+    { p: 'l', name: 'Louise',  cls: 'box-l' }
+  ];
+  // Anciennes cases (avant la double liste) : on les attribue à Charles
+  function normalize(key) { return /^[cl]\|/.test(key) ? key : 'c|' + key; }
+  var legacy = Object.keys(picked).filter(function (k) { return !/^[cl]\|/.test(k); });
+  if (legacy.length) {
+    var np = {};
+    Object.keys(picked).forEach(function (k) { np[normalize(k)] = 1; });
+    picked = np; save();
+  }
+
   document.querySelectorAll('ul.see').forEach(function (ul) {
     var section = ul.closest('section').id;
     var city = ul.closest('section').querySelector('h2').textContent.split(',')[0].trim();
     ul.querySelectorAll('li').forEach(function (li) {
       var id = section + ':' + li.textContent.trim().slice(0, 60);
-      var label = document.createElement('label');
-      var box = document.createElement('input');
-      box.type = 'checkbox';
-      box.checked = !!picked[id];
+      var row = document.createElement('div');
+      row.className = 'row2';
+      var boxes = document.createElement('span');
+      boxes.className = 'boxes';
+      WHO.forEach(function (w) {
+        var box = document.createElement('input');
+        box.type = 'checkbox';
+        box.className = w.cls;
+        box.title = 'Souhait de ' + w.name;
+        box.setAttribute('aria-label', 'Souhait de ' + w.name);
+        box.dataset.id = w.p + '|' + id;
+        box.checked = !!picked[box.dataset.id];
+        box.addEventListener('change', function () {
+          if (box.checked) picked[box.dataset.id] = 1; else delete picked[box.dataset.id];
+          mark(li); save(); refresh();
+          if (window.tripSync) window.tripSync.set(box.dataset.id, box.checked);
+        });
+        boxes.appendChild(box);
+      });
       var span = document.createElement('span');
+      span.className = 'txt';
       span.innerHTML = li.innerHTML;
-      label.appendChild(box); label.appendChild(span);
+      row.appendChild(boxes); row.appendChild(span);
       var n = +li.dataset.stars;
       if (n) {
         var st = document.createElement('span');
         st.className = 'stars s' + n;
         st.title = ['', 'Si on a le temps', 'Intéressant', 'À ne pas manquer'][n];
         st.textContent = '★'.repeat(n) + '☆'.repeat(3 - n);
-        label.appendChild(st);
+        row.appendChild(st);
       }
-      li.innerHTML = ''; li.appendChild(label);
+      li.innerHTML = ''; li.appendChild(row);
       // liens Plan (Google Maps) et Photos (recherche d'images)
-      var place = (li.dataset.q || span.querySelector('b').textContent) + ', ' + city;
-      var links = document.createElement('span');
-      links.className = 'links';
-      links.innerHTML =
-        '<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(place + ', Maroc') + '">📍 Plan</a>' +
-        '<a target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(place) + '">📷 Photos</a>';
-      li.appendChild(links);
-      li.classList.toggle('picked', box.checked);
-      box.dataset.id = id;
-      box.addEventListener('change', function () {
-        if (box.checked) picked[id] = 1; else delete picked[id];
-        li.classList.toggle('picked', box.checked);
-        save(); refresh();
-        if (window.tripSync) window.tripSync.set(id, box.checked);
-      });
+      if (!li.dataset.nolinks) {
+        var place = (li.dataset.q || span.querySelector('b').textContent) + ', ' + city;
+        var links = document.createElement('span');
+        links.className = 'links';
+        links.innerHTML =
+          '<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(place + ', Maroc') + '">📍 Plan</a>' +
+          '<a target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(place) + '">📷 Photos</a>';
+        li.appendChild(links);
+      }
+      mark(li);
     });
     // compteur dans le titre « À voir » juste au-dessus
     var h3 = ul.previousElementSibling;
@@ -314,17 +347,29 @@
     if (h3) { var c = document.createElement('span'); c.className = 'count'; h3.appendChild(c); ul._h3 = h3; }
   });
 
+  // Une visite est « choisie » si au moins l'un des deux l'a cochée ; 💞 si les deux
+  function mark(li) {
+    var on = li.querySelectorAll('input:checked').length;
+    li.classList.toggle('picked', on > 0);
+    li.classList.toggle('both', on === 2);
+  }
+
   function refresh() {
-    var total = 0;
+    var c = 0, l = 0, both = 0;
     document.querySelectorAll('ul.see').forEach(function (ul) {
-      var all = ul.querySelectorAll('input').length, on = ul.querySelectorAll('input:checked').length;
-      total += on;
+      var lis = ul.querySelectorAll('li'), cc = 0, ll = 0;
+      lis.forEach(function (li) {
+        var a = li.querySelector('.box-c').checked, b = li.querySelector('.box-l').checked;
+        if (a) cc++; if (b) ll++; if (a && b) both++;
+      });
+      c += cc; l += ll;
       if (ul._h3) {
-        ul._h3.querySelector('.count').textContent = on + ' / ' + all;
-        ul._h3.classList.toggle('empty', on === 0);
+        ul._h3.querySelector('.count').innerHTML = '<span class="mini-c">■</span> ' + cc + ' · <span class="mini-l">●</span> ' + ll + ' / ' + lis.length;
+        ul._h3.classList.toggle('empty', cc + ll === 0);
       }
     });
-    document.getElementById('total').textContent = total + (total > 1 ? ' visites choisies' : ' visite choisie');
+    document.getElementById('total').innerHTML =
+      '<span class="mini-c">■</span> Charles ' + c + ' · <span class="mini-l">●</span> Louise ' + l + (both ? ' · 💞 ' + both + ' en commun' : '');
   }
   refresh();
 
@@ -342,7 +387,8 @@
     }
     clearTimeout(resetTimer); delete resetBtn.dataset.armed; resetBtn.textContent = 'Tout décocher';
     picked = {}; save();
-    document.querySelectorAll('ul.see input').forEach(function (b) { b.checked = false; b.closest('li').classList.remove('picked'); });
+    document.querySelectorAll('ul.see input').forEach(function (b) { b.checked = false; });
+    document.querySelectorAll('ul.see li').forEach(mark);
     refresh();
     if (window.tripSync) window.tripSync.clear();
   });
@@ -352,12 +398,15 @@
     picked: function () { return Object.keys(picked); },
     apply: function (ids) {
       picked = {};
-      ids.forEach(function (i) { picked[i] = 1; });
-      save();
-      document.querySelectorAll('ul.see input').forEach(function (b) {
-        b.checked = !!picked[b.dataset.id];
-        b.closest('li').classList.toggle('picked', b.checked);
+      ids.forEach(function (i) {
+        var k = normalize(i);
+        picked[k] = 1;
+        // ancienne case sans prénom dans la base : on la convertit en case de Charles
+        if (k !== i && window.tripSync) { window.tripSync.set(i, false); window.tripSync.set(k, true); }
       });
+      save();
+      document.querySelectorAll('ul.see input').forEach(function (b) { b.checked = !!picked[b.dataset.id]; });
+      document.querySelectorAll('ul.see li').forEach(mark);
       refresh();
     }
   };

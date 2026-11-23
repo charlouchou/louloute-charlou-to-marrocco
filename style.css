@@ -77,16 +77,12 @@ h3 .count { text-transform: none; letter-spacing: 0; font-weight: 500; }
 /* Checklist */
 ul.see { list-style: none; margin: 0; padding: 0; }
 ul.see li { margin: 2px 0; }
-ul.see label { display: flex; gap: 10px; align-items: flex-start; padding: 6px 8px; margin: 0 -8px; border-radius: 8px; cursor: pointer; }
-ul.see label:hover { background: var(--bg); }
-ul.see input { width: 18px; height: 18px; margin: 3px 0 0; flex: none; accent-color: var(--check); cursor: pointer; }
-ul.see input:checked + span b { color: var(--check); }
 ul.see b { font-weight: 600; }
 ul.see .stars, .legend .stars { flex: none; margin-left: auto; padding-left: 8px; color: #d4a017; letter-spacing: 1px; font-size: 14px; white-space: nowrap; }
 ul.see .stars.s1 { opacity: .7; }
 .legend { display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--muted); font-size: 13px; margin: 0 0 16px; }
 .legend .stars { margin: 0 4px 0 0; padding: 0; }
-ul.see .links { display: flex; gap: 14px; margin: -4px 0 4px 28px; font-size: 13px; }
+ul.see .links { display: flex; gap: 14px; margin: -4px 0 4px 56px; font-size: 13px; }
 ul.see .links a { color: var(--muted); text-decoration: none; }
 ul.see .links a:hover { color: var(--accent); text-decoration: underline; }
 body.only-picked ul.see li:not(.picked) { display: none; }
@@ -109,7 +105,7 @@ body.only-picked .card h3.empty, body.only-picked .card h3.empty + ul.see { disp
 .lightbox.open { display: flex; }
 .lightbox img { max-width: 100%; max-height: 100%; border-radius: 8px; }
 
-.travel { display: flex; gap: 8px; align-items: baseline; color: var(--muted); font-size: 14px; margin: -4px 0 20px; padding-left: 4px; }
+.travel { display: flex; gap: 8px; align-items: baseline; color: var(--muted); font-size: 16px; margin: -4px 0 20px; padding-left: 4px; }
 .travel strong { color: var(--text); font-weight: 600; }
 
 footer { color: var(--muted); font-size: 13px; padding: 24px 0 56px; border-top: 1px solid var(--line); margin-top: 24px; }
@@ -181,3 +177,27 @@ table.vocab td:nth-child(3) { color: var(--muted); font-size: 13px; }
 .code-form input { font: 15px Inter, system-ui, sans-serif; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--text); width: 180px; }
 .code-form button { font: 600 14px Inter, system-ui, sans-serif; padding: 6px 14px; border-radius: 8px; border: 0; background: var(--accent); color: #fff; cursor: pointer; }
 .code-form .code-msg { color: var(--muted); font-size: 13px; }
+
+/* ---------- Titre ---------- */
+h1 + .kicker { margin: 0 0 14px; font-size: 14px; }
+
+/* ---------- Double checklist (carrés Charles, ronds Louise) ---------- */
+:root { --charles: #2f6fa8; --louise: #c2410c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --charles: #7fb0e0; --louise: #f08a5d; } }
+:root[data-theme="dark"] { --charles: #7fb0e0; --louise: #f08a5d; }
+ul.see .row2 { display: flex; gap: 10px; align-items: flex-start; padding: 6px 8px; margin: 0 -8px; border-radius: 8px; }
+ul.see li.both .row2 { background: var(--accent-soft); }
+ul.see .boxes { display: flex; gap: 6px; flex: none; margin-top: 2px; }
+input.box-c, input.box-l { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; margin: 0; border: 2px solid; background: transparent; cursor: pointer; display: inline-grid; place-content: center; flex: none; }
+input.box-c { border-color: var(--charles); border-radius: 4px; }
+input.box-l { border-color: var(--louise); border-radius: 50%; }
+input.box-c:checked { background: var(--charles); }
+input.box-l:checked { background: var(--louise); }
+input.box-c:checked::after, input.box-l:checked::after { content: "✓"; color: #fff; font: 700 13px/1 Inter, system-ui, sans-serif; }
+input.box-c:disabled, input.box-l:disabled { cursor: default; vertical-align: -4px; }
+ul.see .txt { flex: 1; }
+ul.see li.both .txt b::after { content: " 💞"; }
+.mini-c { color: var(--charles); }
+.mini-l { color: var(--louise); }
+.who-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; margin: 0 0 12px; font-size: 14px; }
+.who-legend span { display: inline-flex; gap: 6px; align-items: center; }
