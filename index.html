@@ -331,8 +331,16 @@
   document.getElementById('only-picked').addEventListener('change', function (e) {
     document.body.classList.toggle('only-picked', e.target.checked);
   });
-  document.getElementById('reset').addEventListener('click', function () {
-    if (!confirm('Décocher toutes les visites ?')) return;
+  var resetBtn = document.getElementById('reset'), resetTimer;
+  resetBtn.addEventListener('click', function () {
+    // 1er clic : demande de confirmation ; 2e clic dans les 4 s : on décoche tout
+    if (!resetBtn.dataset.armed) {
+      resetBtn.dataset.armed = '1';
+      resetBtn.textContent = 'Sûr ? Cliquer encore';
+      resetTimer = setTimeout(function () { delete resetBtn.dataset.armed; resetBtn.textContent = 'Tout décocher'; }, 4000);
+      return;
+    }
+    clearTimeout(resetTimer); delete resetBtn.dataset.armed; resetBtn.textContent = 'Tout décocher';
     picked = {}; save();
     document.querySelectorAll('ul.see input').forEach(function (b) { b.checked = false; b.closest('li').classList.remove('picked'); });
     refresh();

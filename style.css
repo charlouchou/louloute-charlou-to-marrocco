@@ -174,3 +174,10 @@ table.vocab td:nth-child(3) { color: var(--muted); font-size: 13px; }
 .hotels .links { display: flex; gap: 14px; font-size: 13px; margin-top: 4px; }
 .hotels .links a { color: var(--muted); }
 .hotels .row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+
+/* ---------- Saisie du code secret ---------- */
+.code-form { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; flex-basis: 100%; }
+.code-form[hidden] { display: none; }
+.code-form input { font: 15px Inter, system-ui, sans-serif; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--text); width: 180px; }
+.code-form button { font: 600 14px Inter, system-ui, sans-serif; padding: 6px 14px; border-radius: 8px; border: 0; background: var(--accent); color: #fff; cursor: pointer; }
+.code-form .code-msg { color: var(--muted); font-size: 13px; }

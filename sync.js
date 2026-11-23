@@ -3,8 +3,8 @@
    La clé ci-dessous est la clé PUBLIQUE de Supabase (faite pour être visible) :
    sans le code secret, elle ne permet ni de lire ni d'écrire quoi que ce soit. */
 (function () {
-  var SUPABASE_URL = '';   // ex. https://abcdefgh.supabase.co
-  var SUPABASE_KEY = '';   // clé « publishable » (sb_publishable_…) ou « anon »
+  var SUPABASE_URL = 'https://kbxansshesgqlhncnofg.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_tpuq_C913xHxLLYd8_D3yA_02XaSU0X';   // clé publique
 
   var btn = document.getElementById('sync-status');
   if (!SUPABASE_URL || !SUPABASE_KEY || !btn || !window.tripChecklist) return;
@@ -25,16 +25,34 @@
 
   function status(text, title) { btn.hidden = false; btn.textContent = text; btn.title = title || ''; }
 
+  // Petit formulaire dans la barre (pas de fenêtre « prompt », mal supportée partout)
+  var form = document.createElement('form');
+  form.className = 'code-form';
+  form.hidden = true;
+  form.innerHTML = '<input type="password" placeholder="Code secret" autocomplete="off" aria-label="Code secret">' +
+    '<button type="submit">OK</button><span class="code-msg"></span>';
+  btn.parentNode.insertBefore(form, btn.nextSibling);
+  var input = form.querySelector('input'), msg = form.querySelector('.code-msg');
+
   function askCode() {
-    var c = prompt('Code secret pour partager la sélection à deux :');
-    if (!c) return;
-    rpc('trip_check', { p_code: c.trim() }).then(function (ok) {
-      if (!ok) { alert('Code incorrect.'); return; }
-      code = c.trim();
-      try { localStorage.setItem(CODE_KEY, code); } catch (e) {}
-      pull(true);
-    }).catch(function () { alert('Impossible de joindre le serveur. Réessayer plus tard.'); });
+    form.hidden = !form.hidden;
+    msg.textContent = '';
+    if (!form.hidden) { input.value = ''; input.focus(); }
   }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var c = input.value.trim();
+    if (!c) return;
+    msg.textContent = 'Vérification…';
+    rpc('trip_check', { p_code: c }).then(function (ok) {
+      if (!ok) { msg.textContent = 'Code incorrect.'; return; }
+      code = c;
+      try { localStorage.setItem(CODE_KEY, code); } catch (x) {}
+      form.hidden = true;
+      pull(true);
+    }).catch(function () { msg.textContent = 'Serveur injoignable, réessayer.'; });
+  });
 
   function pull(first) {
     if (!code) return;
