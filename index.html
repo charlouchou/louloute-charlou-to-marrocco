@@ -19,46 +19,42 @@
     --accent-soft: #f6e3da;
     --blue: #2f6fa8;        /* bleu de Chefchaouen */
     --sea: #1f7a7a;
+    --check: #2e7d4f;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #1b1714;
-      --surface: #25201c;
-      --text: #f1e9e1;
-      --muted: #b3a597;
-      --line: #3a322c;
-      --accent: #e07a5a;
-      --accent-soft: #3a2620;
-      --blue: #7fb0e0;
-      --sea: #5fc0c0;
+      --bg: #1b1714; --surface: #25201c; --text: #f1e9e1; --muted: #b3a597;
+      --line: #3a322c; --accent: #e07a5a; --accent-soft: #3a2620;
+      --blue: #7fb0e0; --sea: #5fc0c0; --check: #6fcf97;
     }
   }
   :root[data-theme="dark"] {
     --bg: #1b1714; --surface: #25201c; --text: #f1e9e1; --muted: #b3a597;
     --line: #3a322c; --accent: #e07a5a; --accent-soft: #3a2620;
-    --blue: #7fb0e0; --sea: #5fc0c0;
+    --blue: #7fb0e0; --sea: #5fc0c0; --check: #6fcf97;
   }
 
   * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.6 Inter, system-ui, sans-serif;
-  }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 Inter, system-ui, sans-serif; }
   .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
 
-  header { padding: 56px 0 32px; }
+  header { padding: 56px 0 24px; }
   .kicker { color: var(--accent); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; }
   h1 { font-family: Fraunces, Georgia, serif; font-size: clamp(36px, 8vw, 56px); line-height: 1.05; margin: 8px 0 12px; }
   .lead { color: var(--muted); font-size: 18px; margin: 0; }
 
-  /* Résumé de l'itinéraire */
   .route { display: flex; flex-wrap: wrap; gap: 6px 4px; align-items: center; margin: 28px 0 0; padding: 0; list-style: none; font-size: 14px; }
   .route li { display: flex; align-items: center; gap: 4px; }
   .route a { color: var(--text); text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; }
   .route a:hover { border-color: var(--accent); }
   .route li + li::before { content: "→"; color: var(--muted); margin-right: 4px; }
+
+  /* Barre de sélection */
+  .toolbar { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); padding: 10px 0; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: 14px; }
+  .toolbar .total { font-weight: 600; }
+  .toolbar label { display: flex; gap: 6px; align-items: center; cursor: pointer; color: var(--muted); }
+  .toolbar button { margin-left: auto; }
+  button.link { background: none; border: 0; color: var(--muted); font: inherit; text-decoration: underline; cursor: pointer; padding: 0; }
 
   /* Étapes */
   .stop { position: relative; padding-left: 28px; margin: 0 0 8px; }
@@ -68,17 +64,52 @@
 
   .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 20px 16px; margin-bottom: 16px; }
   .dates { color: var(--c, var(--accent)); font-weight: 600; font-size: 14px; }
+  .title-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; }
   h2 { font-family: Fraunces, Georgia, serif; font-size: 28px; margin: 2px 0 4px; }
   .meta { color: var(--muted); font-size: 14px; margin: 0 0 12px; }
-  .badge { display: inline-block; background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 600; border-radius: 6px; padding: 2px 8px; margin: 0 0 12px; }
-  h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 16px 0 6px; }
-  ul.see { margin: 0; padding-left: 18px; }
-  ul.see li { margin: 4px 0; }
+  .badge { display: inline-block; background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 600; border-radius: 6px; padding: 2px 8px; margin: 0 0 8px; }
+  h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 16px 0 6px; display: flex; justify-content: space-between; gap: 8px; }
+  h3 .count { text-transform: none; letter-spacing: 0; font-weight: 500; }
+
+  /* Note */
+  .rating { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); margin: 4px 0 8px; }
+  .pips { display: inline-flex; gap: 3px; }
+  .pips i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+  .pips i.on { background: var(--c, var(--accent)); }
+
+  /* Checklist */
+  ul.see { list-style: none; margin: 0; padding: 0; }
+  ul.see li { margin: 2px 0; }
+  ul.see label { display: flex; gap: 10px; align-items: flex-start; padding: 6px 8px; margin: 0 -8px; border-radius: 8px; cursor: pointer; }
+  ul.see label:hover { background: var(--bg); }
+  ul.see input { width: 18px; height: 18px; margin: 3px 0 0; flex: none; accent-color: var(--check); cursor: pointer; }
+  ul.see input:checked + span b { color: var(--check); }
   ul.see b { font-weight: 600; }
+  body.only-picked ul.see li:not(.picked) { display: none; }
+  body.only-picked .card h3.empty, body.only-picked .card h3.empty + ul.see { display: none; }
+
+  /* Photos */
+  .photo-btn { margin-top: 14px; background: var(--bg); border: 1px solid var(--line); color: var(--text); border-radius: 999px; padding: 6px 14px; font: 500 14px Inter, system-ui, sans-serif; cursor: pointer; }
+  .photo-btn:hover { border-color: var(--c, var(--accent)); }
+  .gallery { display: none; margin-top: 12px; }
+  .gallery.open { display: block; }
+  .strip { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
+  .strip figure { margin: 0; flex: 0 0 78%; max-width: 420px; scroll-snap-align: start; }
+  .strip img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; display: block; background: var(--line); cursor: zoom-in; }
+  .strip figcaption { font-size: 11px; color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .strip figcaption a { color: inherit; }
+  .gallery .msg { color: var(--muted); font-size: 14px; }
+
+  /* Agrandissement */
+  .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none; align-items: center; justify-content: center; z-index: 20; padding: 16px; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 100%; border-radius: 8px; }
 
   .travel { display: flex; gap: 8px; align-items: baseline; color: var(--muted); font-size: 14px; margin: -4px 0 20px; padding-left: 4px; }
+  .travel strong { color: var(--text); font-weight: 600; }
 
   footer { color: var(--muted); font-size: 13px; padding: 24px 0 56px; border-top: 1px solid var(--line); margin-top: 24px; }
+  footer a { color: inherit; }
 </style>
 </head>
 <body>
@@ -99,13 +130,20 @@
     </ul>
   </header>
 
+  <div class="toolbar">
+    <span class="total" id="total">0 visite choisie</span>
+    <label><input type="checkbox" id="only-picked"> Afficher seulement ma sélection</label>
+    <button class="link" id="reset" type="button">Tout décocher</button>
+  </div>
+
   <main>
 
-    <section class="stop" id="essaouira">
+    <section class="stop" id="essaouira" data-wiki="Essaouira">
       <span class="dot"></span>
       <div class="card">
         <div class="dates">Mer. 30 déc. → dim. 3 janv. · 4 nuits</div>
         <h2>Essaouira</h2>
+        <div class="rating" data-score="4">Beaucoup à voir, sans se presser</div>
         <span class="badge">🎉 Réveillon du 31 sur place</span>
         <h3>À voir</h3>
         <ul class="see">
@@ -115,17 +153,21 @@
           <li><b>Le Mellah et Bayt Dakira</b> : l'ancien quartier juif et sa maison de la mémoire.</li>
           <li><b>Les ateliers de thuya</b> : marqueterie, la spécialité locale.</li>
           <li><b>La plage</b> : longue balade vers le sud, kitesurf et chameaux.</li>
-          <li><b>Escapade possible</b> : Sidi Kaouki (plage sauvage, 30 min) ou une coopérative d'huile d'argan.</li>
+          <li><b>Sidi Kaouki</b> : plage sauvage à 30 min.</li>
+          <li><b>Une coopérative d'huile d'argan</b>, sur la route de Marrakech.</li>
         </ul>
+        <button class="photo-btn" type="button">📷 Voir les photos</button>
+        <div class="gallery"></div>
       </div>
     </section>
-    <div class="travel">🚗 Essaouira → Casablanca · environ 4 h de route</div>
+    <div class="travel">🚗 <span><strong>Dim. 3 janv.</strong> · Essaouira → Casablanca · environ 4 h de route</span></div>
 
-    <section class="stop" id="casablanca" style="--c: var(--sea)">
+    <section class="stop" id="casablanca" data-wiki="Casablanca" style="--c: var(--sea)">
       <span class="dot"></span>
       <div class="card">
         <div class="dates">Dim. 3 janv. · 1 nuit</div>
         <h2>Casablanca</h2>
+        <div class="rating" data-score="2">Une soirée suffit, la mosquée avant tout</div>
         <h3>À voir</h3>
         <ul class="see">
           <li><b>La mosquée Hassan II</b> : construite en partie sur l'océan, l'une des rares visitables à l'intérieur (visite guidée).</li>
@@ -134,15 +176,18 @@
           <li><b>Le centre Art déco</b> : immeubles des années 1930 autour du boulevard Mohammed V.</li>
           <li><b>Le Marché central</b> : poissons et fruits de mer à déguster sur place.</li>
         </ul>
+        <button class="photo-btn" type="button">📷 Voir les photos</button>
+        <div class="gallery"></div>
       </div>
     </section>
-    <div class="travel">🚆 Casablanca → Rabat · environ 1 h</div>
+    <div class="travel">🚗 <span><strong>Lun. 4 janv.</strong> · Casablanca → Rabat · environ 1 h de route</span></div>
 
-    <section class="stop" id="rabat">
+    <section class="stop" id="rabat" data-wiki="Rabat">
       <span class="dot"></span>
       <div class="card">
         <div class="dates">Lun. 4 → mer. 6 janv. · 2 nuits</div>
         <h2>Rabat</h2>
+        <div class="rating" data-score="4">Beaucoup à voir, ville calme et agréable</div>
         <h3>À voir</h3>
         <ul class="see">
           <li><b>La Kasbah des Oudayas</b> : ruelles bleues et blanches, jardin andalou, vue sur l'embouchure.</li>
@@ -152,23 +197,27 @@
           <li><b>Le Musée Mohammed VI</b> d'art moderne et contemporain.</li>
           <li><b>Salé</b>, juste en face de l'autre côté du fleuve (tramway ou barque).</li>
         </ul>
+        <button class="photo-btn" type="button">📷 Voir les photos</button>
+        <div class="gallery"></div>
       </div>
     </section>
-    <div class="travel">🚗 Rabat → Meknès · environ 2 h, puis Meknès → Fès · environ 1 h</div>
+    <div class="travel">🚗 <span><strong>Mer. 6 janv.</strong> · Rabat → Meknès · environ 2 h, puis Meknès → Fès · environ 1 h</span></div>
 
-    <section class="stop" id="meknes-fes">
+    <section class="stop" id="meknes-fes" data-wiki="Meknes|Fez,_Morocco">
       <span class="dot"></span>
       <div class="card">
         <div class="dates">Mer. 6 janv. · 1 nuit (à Fès)</div>
         <h2>Meknès &amp; Fès</h2>
         <h3>Meknès (le matin)</h3>
+        <div class="rating" data-score="3">Intéressant, une demi-journée suffit</div>
         <ul class="see">
           <li><b>Bab Mansour</b> : l'une des plus belles portes du Maroc.</li>
           <li><b>La place El Hedim</b> et la médina.</li>
           <li><b>Le Mausolée de Moulay Ismaïl</b> et les greniers <b>Heri es-Souani</b>.</li>
-          <li><b>Option</b> : les ruines romaines de Volubilis (30 min), si le temps le permet.</li>
+          <li><b>Les ruines romaines de Volubilis</b> (30 min), si le temps le permet.</li>
         </ul>
         <h3>Fès (l'après-midi et le soir)</h3>
+        <div class="rating" data-score="5">Incontournable, énormément à voir</div>
         <ul class="see">
           <li><b>Bab Boujloud</b> : la « porte bleue », entrée de la médina.</li>
           <li><b>La médina de Fès el-Bali</b> : immense, un guide aide beaucoup.</li>
@@ -177,15 +226,18 @@
           <li><b>La mosquée Al Quaraouiyine</b> (vue de l'extérieur).</li>
           <li><b>Le Borj Nord</b> : panorama sur toute la médina.</li>
         </ul>
+        <button class="photo-btn" type="button">📷 Voir les photos</button>
+        <div class="gallery"></div>
       </div>
     </section>
-    <div class="travel">🚗 Fès → Chefchaouen · environ 3 h 30 de route</div>
+    <div class="travel">🚗 <span><strong>Jeu. 7 janv.</strong> · Fès → Chefchaouen · environ 3 h 30 de route</span></div>
 
-    <section class="stop" id="chefchaouen" style="--c: var(--blue)">
+    <section class="stop" id="chefchaouen" data-wiki="Chefchaouen" style="--c: var(--blue)">
       <span class="dot"></span>
       <div class="card">
         <div class="dates">Jeu. 7 janv. · 1 nuit</div>
         <h2>Chefchaouen, la ville bleue</h2>
+        <div class="rating" data-score="3">Petite ville, surtout pour l'ambiance</div>
         <h3>À voir</h3>
         <ul class="see">
           <li><b>La médina bleue</b> : se perdre dans les ruelles.</li>
@@ -193,15 +245,18 @@
           <li><b>La mosquée espagnole</b> : 30 min de marche, vue sur la ville au coucher du soleil.</li>
           <li><b>Ras el Maa</b> : la source et les lavoirs à l'entrée de la ville.</li>
         </ul>
+        <button class="photo-btn" type="button">📷 Voir les photos</button>
+        <div class="gallery"></div>
       </div>
     </section>
-    <div class="travel">🚗 Chefchaouen → Tanger · environ 2 h 30 de route</div>
+    <div class="travel">🚗 <span><strong>Ven. 8 janv.</strong> · Chefchaouen → Tanger · environ 2 h 30 de route</span></div>
 
-    <section class="stop" id="tanger">
+    <section class="stop" id="tanger" data-wiki="Tangier">
       <span class="dot"></span>
       <div class="card">
         <div class="dates">Ven. 8 janv. · départ du bateau à 22 h</div>
         <h2>Tanger</h2>
+        <div class="rating" data-score="4">Beaucoup à voir, juste une journée ici</div>
         <h3>À voir</h3>
         <ul class="see">
           <li><b>La Kasbah</b> et son musée, vue sur le détroit.</li>
@@ -209,13 +264,12 @@
           <li><b>Le Café Hafa</b> : thé à la menthe sur les terrasses face à la mer.</li>
           <li><b>Le Cap Spartel et les grottes d'Hercule</b>, là où l'Atlantique rencontre la Méditerranée.</li>
         </ul>
-        <h3>Bon à savoir</h3>
-        <ul class="see">
-          <li>Vérifier sur le billet le port de départ (en général <b>Tanger Med</b>, à environ 45 min de la ville) et l'heure limite d'embarquement.</li>
-        </ul>
+        <p class="meta" style="margin-top:12px">⚠️ Vérifier sur le billet le port de départ (en général <b>Tanger Med</b>, à environ 45 min de la ville) et l'heure limite d'embarquement.</p>
+        <button class="photo-btn" type="button">📷 Voir les photos</button>
+        <div class="gallery"></div>
       </div>
     </section>
-    <div class="travel">⛴️ Traversée Tanger → Sète · 2 nuits à bord</div>
+    <div class="travel">⛴️ <span><strong>Ven. 8 janv., 22 h</strong> · Traversée Tanger → Sète · 2 nuits à bord</span></div>
 
     <section class="stop" id="sete" style="--c: var(--sea)">
       <span class="dot"></span>
@@ -229,9 +283,149 @@
   </main>
 
   <footer>
-    Durées de trajet approximatives, à vérifier avant de partir.
+    Durées de trajet approximatives, à vérifier avant de partir. La note de chaque ville indique s'il y a beaucoup ou peu de choses à voir.
+    Les cases cochées sont mémorisées sur cet appareil uniquement.
+    Photos : <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (licences libres, auteurs sur la page de chaque photo).
   </footer>
 
 </div>
+
+<div class="lightbox" id="lightbox"><img alt=""></div>
+
+<script>
+(function () {
+  /* ---------- Mémoire des cases cochées (sur cet appareil) ---------- */
+  var KEY = 'maroc-checklist-v1';
+  var picked = {};
+  try { picked = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(picked)); } catch (e) {} }
+
+  /* ---------- Notes : 5 pastilles ---------- */
+  document.querySelectorAll('.rating').forEach(function (el) {
+    var n = +el.dataset.score, pips = document.createElement('span');
+    pips.className = 'pips';
+    pips.setAttribute('aria-label', 'Note ' + n + ' sur 5');
+    for (var i = 1; i <= 5; i++) {
+      var p = document.createElement('i');
+      if (i <= n) p.className = 'on';
+      pips.appendChild(p);
+    }
+    el.prepend(pips);
+  });
+
+  /* ---------- Checklist ---------- */
+  document.querySelectorAll('ul.see').forEach(function (ul) {
+    var section = ul.closest('section').id;
+    ul.querySelectorAll('li').forEach(function (li) {
+      var id = section + ':' + li.textContent.trim().slice(0, 60);
+      var label = document.createElement('label');
+      var box = document.createElement('input');
+      box.type = 'checkbox';
+      box.checked = !!picked[id];
+      var span = document.createElement('span');
+      span.innerHTML = li.innerHTML;
+      label.appendChild(box); label.appendChild(span);
+      li.innerHTML = ''; li.appendChild(label);
+      li.classList.toggle('picked', box.checked);
+      box.addEventListener('change', function () {
+        if (box.checked) picked[id] = 1; else delete picked[id];
+        li.classList.toggle('picked', box.checked);
+        save(); refresh();
+      });
+    });
+    // compteur dans le titre « À voir » juste au-dessus
+    var h3 = ul.previousElementSibling;
+    while (h3 && h3.tagName !== 'H3') h3 = h3.previousElementSibling;
+    if (h3) { var c = document.createElement('span'); c.className = 'count'; h3.appendChild(c); ul._h3 = h3; }
+  });
+
+  function refresh() {
+    var total = 0;
+    document.querySelectorAll('ul.see').forEach(function (ul) {
+      var all = ul.querySelectorAll('input').length, on = ul.querySelectorAll('input:checked').length;
+      total += on;
+      if (ul._h3) {
+        ul._h3.querySelector('.count').textContent = on + ' / ' + all;
+        ul._h3.classList.toggle('empty', on === 0);
+      }
+    });
+    document.getElementById('total').textContent = total + (total > 1 ? ' visites choisies' : ' visite choisie');
+  }
+  refresh();
+
+  document.getElementById('only-picked').addEventListener('change', function (e) {
+    document.body.classList.toggle('only-picked', e.target.checked);
+  });
+  document.getElementById('reset').addEventListener('click', function () {
+    if (!confirm('Décocher toutes les visites ?')) return;
+    picked = {}; save();
+    document.querySelectorAll('ul.see input').forEach(function (b) { b.checked = false; b.closest('li').classList.remove('picked'); });
+    refresh();
+  });
+
+  /* ---------- Photos depuis Wikipédia (chargées au clic) ---------- */
+  function loadPhotos(title) {
+    return fetch('https://en.wikipedia.org/api/rest_v1/page/media-list/' + encodeURIComponent(title))
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        return (d.items || []).filter(function (it) {
+          var src = it.srcset && it.srcset[0] && it.srcset[0].src;
+          // uniquement des photos libres (Commons), pas de cartes ni logos
+          return it.type === 'image' && it.title && src &&
+                 src.indexOf('/wikipedia/commons/') !== -1 &&
+                 /\.jpe?g$/i.test(it.title);
+        }).slice(0, 8).map(function (it) {
+          var src = 'https:' + it.srcset[0].src;
+          return {
+            thumb: src,
+            big: src.replace(/\/\d+px-/, '/1280px-'),
+            page: 'https://commons.wikimedia.org/wiki/' + encodeURIComponent(it.title),
+            name: decodeURIComponent(it.title.replace(/^File:/, '').replace(/_/g, ' ').replace(/\.jpe?g$/i, ''))
+          };
+        });
+      });
+  }
+
+  var lightbox = document.getElementById('lightbox');
+  lightbox.addEventListener('click', function () { lightbox.classList.remove('open'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lightbox.classList.remove('open'); });
+
+  function toggleGallery(section) {
+    var gal = section.querySelector('.gallery'), btn = section.querySelector('.photo-btn');
+    if (!gal) return;
+    var open = !gal.classList.contains('open');
+    gal.classList.toggle('open', open);
+    btn.textContent = open ? '📷 Masquer les photos' : '📷 Voir les photos';
+    if (!open || gal.dataset.loaded) return;
+    gal.dataset.loaded = '1';
+    gal.innerHTML = '<p class="msg">Chargement des photos…</p>';
+    Promise.all(section.dataset.wiki.split('|').map(function (t) { return loadPhotos(t).catch(function () { return []; }); }))
+      .then(function (lists) {
+        var photos = [].concat.apply([], lists);
+        if (!photos.length) { gal.innerHTML = '<p class="msg">Photos indisponibles pour le moment (connexion internet nécessaire).</p>'; return; }
+        var strip = document.createElement('div'); strip.className = 'strip';
+        photos.forEach(function (p) {
+          var fig = document.createElement('figure');
+          var img = document.createElement('img');
+          img.src = p.thumb; img.alt = p.name; img.loading = 'lazy';
+          img.addEventListener('click', function () { lightbox.querySelector('img').src = p.big; lightbox.classList.add('open'); });
+          var cap = document.createElement('figcaption');
+          var a = document.createElement('a'); a.href = p.page; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Source et auteur';
+          cap.appendChild(a);
+          fig.appendChild(img); fig.appendChild(cap); strip.appendChild(fig);
+        });
+        gal.innerHTML = ''; gal.appendChild(strip);
+      });
+  }
+
+  document.querySelectorAll('section[data-wiki]').forEach(function (section) {
+    section.querySelector('.photo-btn').addEventListener('click', function () { toggleGallery(section); });
+    var h2 = section.querySelector('h2');
+    h2.style.cursor = 'pointer';
+    h2.title = 'Voir les photos';
+    h2.addEventListener('click', function () { toggleGallery(section); });
+  });
+})();
+</script>
 </body>
 </html>
