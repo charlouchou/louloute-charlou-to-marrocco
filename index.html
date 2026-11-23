@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maroc 2026–2027</title>
+<meta name="description" content="Itinéraire du voyage au Maroc, du 30 décembre 2026 au 10 janvier 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf6f0;
+    --surface: #ffffff;
+    --text: #2b211b;
+    --muted: #7a6a5e;
+    --line: #e8ddd0;
+    --accent: #b5482a;      /* terre cuite */
+    --accent-soft: #f6e3da;
+    --blue: #2f6fa8;        /* bleu de Chefchaouen */
+    --sea: #1f7a7a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b1714;
+      --surface: #25201c;
+      --text: #f1e9e1;
+      --muted: #b3a597;
+      --line: #3a322c;
+      --accent: #e07a5a;
+      --accent-soft: #3a2620;
+      --blue: #7fb0e0;
+      --sea: #5fc0c0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b1714; --surface: #25201c; --text: #f1e9e1; --muted: #b3a597;
+    --line: #3a322c; --accent: #e07a5a; --accent-soft: #3a2620;
+    --blue: #7fb0e0; --sea: #5fc0c0;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 Inter, system-ui, sans-serif;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+  header { padding: 56px 0 32px; }
+  .kicker { color: var(--accent); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; }
+  h1 { font-family: Fraunces, Georgia, serif; font-size: clamp(36px, 8vw, 56px); line-height: 1.05; margin: 8px 0 12px; }
+  .lead { color: var(--muted); font-size: 18px; margin: 0; }
+
+  /* Résumé de l'itinéraire */
+  .route { display: flex; flex-wrap: wrap; gap: 6px 4px; align-items: center; margin: 28px 0 0; padding: 0; list-style: none; font-size: 14px; }
+  .route li { display: flex; align-items: center; gap: 4px; }
+  .route a { color: var(--text); text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; }
+  .route a:hover { border-color: var(--accent); }
+  .route li + li::before { content: "→"; color: var(--muted); margin-right: 4px; }
+
+  /* Étapes */
+  .stop { position: relative; padding-left: 28px; margin: 0 0 8px; }
+  .stop::before { content: ""; position: absolute; left: 7px; top: 10px; bottom: -8px; width: 2px; background: var(--line); }
+  .stop:last-of-type::before { display: none; }
+  .dot { position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--c, var(--accent)); border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--c, var(--accent)); }
+
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 20px 16px; margin-bottom: 16px; }
+  .dates { color: var(--c, var(--accent)); font-weight: 600; font-size: 14px; }
+  h2 { font-family: Fraunces, Georgia, serif; font-size: 28px; margin: 2px 0 4px; }
+  .meta { color: var(--muted); font-size: 14px; margin: 0 0 12px; }
+  .badge { display: inline-block; background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 600; border-radius: 6px; padding: 2px 8px; margin: 0 0 12px; }
+  h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 16px 0 6px; }
+  ul.see { margin: 0; padding-left: 18px; }
+  ul.see li { margin: 4px 0; }
+  ul.see b { font-weight: 600; }
+
+  .travel { display: flex; gap: 8px; align-items: baseline; color: var(--muted); font-size: 14px; margin: -4px 0 20px; padding-left: 4px; }
+
+  footer { color: var(--muted); font-size: 13px; padding: 24px 0 56px; border-top: 1px solid var(--line); margin-top: 24px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">Rabat Project Charlou</div>
+    <h1>Maroc, du 30 décembre au 10 janvier</h1>
+    <p class="lead">D'Essaouira à Tanger en passant par le réveillon au bord de l'Atlantique, puis retour en bateau jusqu'à Sète.</p>
+    <ul class="route">
+      <li><a href="#essaouira">Essaouira</a></li>
+      <li><a href="#casablanca">Casablanca</a></li>
+      <li><a href="#rabat">Rabat</a></li>
+      <li><a href="#meknes-fes">Meknès &amp; Fès</a></li>
+      <li><a href="#chefchaouen">Chefchaouen</a></li>
+      <li><a href="#tanger">Tanger</a></li>
+      <li><a href="#sete">Sète</a></li>
+    </ul>
+  </header>
+
+  <main>
+
+    <section class="stop" id="essaouira">
+      <span class="dot"></span>
+      <div class="card">
+        <div class="dates">Mer. 30 déc. → dim. 3 janv. · 4 nuits</div>
+        <h2>Essaouira</h2>
+        <span class="badge">🎉 Réveillon du 31 sur place</span>
+        <h3>À voir</h3>
+        <ul class="see">
+          <li><b>La médina</b> : remparts blancs, volets bleus, classée à l'Unesco.</li>
+          <li><b>La Skala de la Ville</b> : la promenade sur les remparts et ses canons, idéale au coucher du soleil.</li>
+          <li><b>Le port de pêche</b> : barques bleues, criée et chantier naval. Poisson grillé sur les stands à la sortie du port.</li>
+          <li><b>Le Mellah et Bayt Dakira</b> : l'ancien quartier juif et sa maison de la mémoire.</li>
+          <li><b>Les ateliers de thuya</b> : marqueterie, la spécialité locale.</li>
+          <li><b>La plage</b> : longue balade vers le sud, kitesurf et chameaux.</li>
+          <li><b>Escapade possible</b> : Sidi Kaouki (plage sauvage, 30 min) ou une coopérative d'huile d'argan.</li>
+        </ul>
+      </div>
+    </section>
+    <div class="travel">🚗 Essaouira → Casablanca · environ 4 h de route</div>
+
+    <section class="stop" id="casablanca" style="--c: var(--sea)">
+      <span class="dot"></span>
+      <div class="card">
+        <div class="dates">Dim. 3 janv. · 1 nuit</div>
+        <h2>Casablanca</h2>
+        <h3>À voir</h3>
+        <ul class="see">
+          <li><b>La mosquée Hassan II</b> : construite en partie sur l'océan, l'une des rares visitables à l'intérieur (visite guidée).</li>
+          <li><b>La Corniche d'Aïn Diab</b> : promenade en bord de mer.</li>
+          <li><b>Le quartier des Habous</b> : la « nouvelle médina », librairies et pâtisseries.</li>
+          <li><b>Le centre Art déco</b> : immeubles des années 1930 autour du boulevard Mohammed V.</li>
+          <li><b>Le Marché central</b> : poissons et fruits de mer à déguster sur place.</li>
+        </ul>
+      </div>
+    </section>
+    <div class="travel">🚆 Casablanca → Rabat · environ 1 h</div>
+
+    <section class="stop" id="rabat">
+      <span class="dot"></span>
+      <div class="card">
+        <div class="dates">Lun. 4 → mer. 6 janv. · 2 nuits</div>
+        <h2>Rabat</h2>
+        <h3>À voir</h3>
+        <ul class="see">
+          <li><b>La Kasbah des Oudayas</b> : ruelles bleues et blanches, jardin andalou, vue sur l'embouchure.</li>
+          <li><b>La Tour Hassan et le Mausolée Mohammed V</b>.</li>
+          <li><b>Le Chellah</b> : ruines romaines et mérinides au milieu des jardins.</li>
+          <li><b>La médina et la rue des Consuls</b> : tapis et artisanat.</li>
+          <li><b>Le Musée Mohammed VI</b> d'art moderne et contemporain.</li>
+          <li><b>Salé</b>, juste en face de l'autre côté du fleuve (tramway ou barque).</li>
+        </ul>
+      </div>
+    </section>
+    <div class="travel">🚗 Rabat → Meknès · environ 2 h, puis Meknès → Fès · environ 1 h</div>
+
+    <section class="stop" id="meknes-fes">
+      <span class="dot"></span>
+      <div class="card">
+        <div class="dates">Mer. 6 janv. · 1 nuit (à Fès)</div>
+        <h2>Meknès &amp; Fès</h2>
+        <h3>Meknès (le matin)</h3>
+        <ul class="see">
+          <li><b>Bab Mansour</b> : l'une des plus belles portes du Maroc.</li>
+          <li><b>La place El Hedim</b> et la médina.</li>
+          <li><b>Le Mausolée de Moulay Ismaïl</b> et les greniers <b>Heri es-Souani</b>.</li>
+          <li><b>Option</b> : les ruines romaines de Volubilis (30 min), si le temps le permet.</li>
+        </ul>
+        <h3>Fès (l'après-midi et le soir)</h3>
+        <ul class="see">
+          <li><b>Bab Boujloud</b> : la « porte bleue », entrée de la médina.</li>
+          <li><b>La médina de Fès el-Bali</b> : immense, un guide aide beaucoup.</li>
+          <li><b>Les tanneries Chouara</b>, vues depuis les terrasses des boutiques.</li>
+          <li><b>Les médersas Bou Inania et Al-Attarine</b>.</li>
+          <li><b>La mosquée Al Quaraouiyine</b> (vue de l'extérieur).</li>
+          <li><b>Le Borj Nord</b> : panorama sur toute la médina.</li>
+        </ul>
+      </div>
+    </section>
+    <div class="travel">🚗 Fès → Chefchaouen · environ 3 h 30 de route</div>
+
+    <section class="stop" id="chefchaouen" style="--c: var(--blue)">
+      <span class="dot"></span>
+      <div class="card">
+        <div class="dates">Jeu. 7 janv. · 1 nuit</div>
+        <h2>Chefchaouen, la ville bleue</h2>
+        <h3>À voir</h3>
+        <ul class="see">
+          <li><b>La médina bleue</b> : se perdre dans les ruelles.</li>
+          <li><b>La place Outa el Hammam</b> et la Kasbah.</li>
+          <li><b>La mosquée espagnole</b> : 30 min de marche, vue sur la ville au coucher du soleil.</li>
+          <li><b>Ras el Maa</b> : la source et les lavoirs à l'entrée de la ville.</li>
+        </ul>
+      </div>
+    </section>
+    <div class="travel">🚗 Chefchaouen → Tanger · environ 2 h 30 de route</div>
+
+    <section class="stop" id="tanger">
+      <span class="dot"></span>
+      <div class="card">
+        <div class="dates">Ven. 8 janv. · départ du bateau à 22 h</div>
+        <h2>Tanger</h2>
+        <h3>À voir</h3>
+        <ul class="see">
+          <li><b>La Kasbah</b> et son musée, vue sur le détroit.</li>
+          <li><b>Le Grand Socco et le Petit Socco</b>.</li>
+          <li><b>Le Café Hafa</b> : thé à la menthe sur les terrasses face à la mer.</li>
+          <li><b>Le Cap Spartel et les grottes d'Hercule</b>, là où l'Atlantique rencontre la Méditerranée.</li>
+        </ul>
+        <h3>Bon à savoir</h3>
+        <ul class="see">
+          <li>Vérifier sur le billet le port de départ (en général <b>Tanger Med</b>, à environ 45 min de la ville) et l'heure limite d'embarquement.</li>
+        </ul>
+      </div>
+    </section>
+    <div class="travel">⛴️ Traversée Tanger → Sète · 2 nuits à bord</div>
+
+    <section class="stop" id="sete" style="--c: var(--sea)">
+      <span class="dot"></span>
+      <div class="card">
+        <div class="dates">Dim. 10 janv.</div>
+        <h2>Arrivée à Sète</h2>
+        <p class="meta">Fin du voyage.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Durées de trajet approximatives, à vérifier avant de partir.
+  </footer>
+
+</div>
+</body>
+</html>
